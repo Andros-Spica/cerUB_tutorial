@@ -1,0 +1,55 @@
+---
+title: 'Appendix A: Petrographic variables'
+author: ''
+date: ''
+output:
+  pdf_document: default
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis', encoding = "UTF-8"}
+library(knitr)
+library(pander)
+library(cerUB)
+data("amphorae")
+varCode <- code_variables(amphorae)
+varCode <- varCode[6:112, ]
+provVar <- names(amphorae)[get_provenance(amphorae, coda_variables = NULL)[[1]]]
+isProvVar <- c()
+for (i in varCode[,1]) {
+  if (i %in% provVar)
+    isProvVar <- c(isProvVar, "yes")
+  else
+    isProvVar <- c(isProvVar, "no")
+}
+panderOptions("table.style", "multiline")
+pander(cbind(varCode,
+             "Provenance\nrelated" = isProvVar,
+                   Values = c(
+                     paste("poorly", "poorly to moderately", "moderately", "moderately to well", "well", "none", sep = ", "),
+                     paste("unparallel", "slightly parallel", "parallel", "none", sep = ", "),
+                     paste("unfired", "700-800oC", "800-900oC", "900-1000oC", "1000-1100oC", sep = ", "),
+                     paste("reducing", "reducing to oxidising", "oxidising", "indeterminate; in this data set all are oxidising", sep = ", "),
+                     paste("reducing", "reducing to oxidising", "oxidising", "indeterminate; in this data set all are either oxidising or indeterminate", sep = ", "),
+                     paste("none", "very few", "few", "common", "abundant", "very abundant", sep = ", "),
+                     paste("For all 'VOID_X_Y' variables: none", "few", "frequent", "predominant", sep = ", "),
+                     rep("...", 15),
+                     paste("none", "very few", "few", "common", "abundant", "very abundant", sep = ", "),
+                     paste("none","very fine","very fine to fine","fine","fine to medium","medium","medium to coarse","coarse","coarse to very coarse","very coarse", sep = ", "),
+                     paste("angular","angular to subangular", "subangular","subangular to subrounded","subrounded","subrounded to rounded","rounded","none", sep = ", "),
+                     paste("elongate","elongate to equidimensional","equidimensional","equidimensional to laminar","laminar", "none", sep = ", "),
+                     paste("single-spaced","single to double-spaced","double-spaced","double to open-spaced","open-spaced","none", sep = ", "),
+                     paste("poorly-sorted","poorly to moderately-sorted","moderately-sorted","moderately to well-sorted","well-sorted","none", sep = ", "),
+                     paste("For all 'COAR_R_X' variables: none", "few", "common", "frequent", "dominant", "predominant", sep = ", "),
+                     rep("...", 35),
+                     paste("For all 'COAR_C_X' variables: none", "few", "common", "frequent", "dominant", "predominant", sep = ", "),
+                     rep("...", 21),
+                     paste("none", "very few", "few", "common", "abundant", "very abundant", sep = ", "),
+                     paste("none","very fine silt","very fine to fine silt","fine silt","fine to medium silt","medium silt","medium to coarse silt","coarse silt","coarse silt to very fine sand", sep = ", "),
+                     paste("elongate","elongate to equidimensional", "equidimensional", "equidimensional to laminar", "laminar", "none", sep = ", "),
+                     paste("For all 'FINE_C_X' variables: none", "few", "frequent", "predominant", sep = ", "),
+                     rep("...", 17)
+                   )
+),
+split.cells = c(40, 5, 5, 40), split.table = Inf
+)
+```

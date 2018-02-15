@@ -1,0 +1,126 @@
+---
+output: pdf_document
+---
+
+# Protocol 3 - Geochemical and petrographic data {#prot3}
+
+The following example applies protocol 3 to confirm workshops' provenance groups.
+
+Protocol 3 consist in: 
+
+1. Select **_geochemical_** compositional data (CoDa) and ordinal **_petrographic_** data;
+2. **_Centred log-ratio transformation_** (clr) and transform to **_ranks_**;
+3. **_Extended Gower distance_**, using **Relative ranking difference** (RRD);
+4. Apply **_Principal Coordinates Analysis_** (PCoA);
+5. Perform **_PERMANOVA & PERMDISP_** tests;
+
+Last, search for outliers and re-do protocol excluding outliers.
+
+NOTE: The [initial procedures](#init) must be ran at least once before any protocol can be applied.
+
+See [protocol 2](#prot2), for consulting references on the extended Gower distance.
+
+
+## Ordination procedure
+
+Protocol 3 performs PCoA on a distance matrix calculated with Extended Gower coefficient of dissimilarity, combining Euclidean distances on transformed compositional data (50%) and RRD on ranked petrographic data (50%). As in protocol 2, PCoA requires specifying the number of dimensions and so you must 2D and 3D ordination objects separately:
+
+```{r, results='hide', warning=FALSE, message=FALSE}
+prot3_2d <- apply_ordination(cleanAmphorae[!isShipwreck,], # no shipwrecks
+                             "3", # select protocol 3
+                             exception_columns = excep_cols,
+                             variable_tags = varCode,
+                             coda_override = chemVars16,
+                             coda_transformation = "CLR")
+
+prot3_3d <- apply_ordination(cleanAmphorae[!isShipwreck,], # no shipwrecks
+                             "3", # select protocol 3
+                             exception_columns = excep_cols,
+                             variable_tags = varCode,
+                             coda_override = chemVars16,
+                             coda_transformation = "CLR",
+                             dimensions = 3)
+```
+
+## Simplify CoDa names
+
+We may want to simplify the names of the transformed variables before plotting them in a biplot. 
+
+```{r}
+prot3_2d <- simplify_coda_names(prot3_2d)
+prot3_3d <- simplify_coda_names(prot3_3d)
+```
+
+## Test the given provenance groups
+
+Because protocol 3 uses both geochemical and petrographic information, we can test the provenance assigned to the amphorae samples.
+
+```{r}
+prot3_tests <- test_groups(prot3_2d$dist_matrix, 
+                           factor_list$ProvGroup)
+```
+
+These tests were explained in [protocol 1](#tests).
+
+\pagebreak
+
+## Biplots
+
+The details on how to create biplots is already explained in [protocol 1](#biplots). Unlike protocol 2, protocol 3 only generates one kind of projection (RRD, PCoA).
+
+### Biplot 2D
+
+```{r, fig.width=4.5, fig.height=4.5, fig.cap = "protocol 3"}
+arrows_label_adj <- rbind(c(.5,.8),c(.5,1),c(.5,1),c(.5,0),c(.5,1),
+                          c(.5,0),c(0,.5))
+row.names(arrows_label_adj) <- c("L48","L24","L5","L36","S7",
+                                 "S8","S11")
+
+biplot2d3d::biplot_2d(prot3_2d,
+                      ordination_method = "PCoA",
+                      invert_coordinates = c (TRUE,TRUE),
+                      ylim = c(-.3,.29),
+                      point_type = "point",
+                      groups = factor_list$FabricGroup,
+                      group_color = color_list$FabricGroup,
+                      group_label_cex = 0.6,
+                      arrow_mim_dist = 0.5,
+                      arrow_label_cex = 0.6,
+                      arrow_fig = c(.6,.95,0,.35),
+                      arrow_label_adj_override = arrows_label_adj,
+                      subtitle = prot3_2d$sub2D,
+                      test_text = prot3_tests$text(prot3_tests),
+                      test_fig = c(0, 0.5, 0.62, .99),
+                      fitAnalysis_fig = c(0,.7,.05,.5),
+                      output_type = "preview")
+```
+
+\pagebreak
+
+### Biplot 3D
+
+```{r, eval=FALSE}
+biplot2d3d::biplot_3d(prot3_3d,
+                       ordination_method = "PCoA",
+                       point_type = "point",
+                       groups = factor_list$FabricGroup,
+                       group_color = color_list$FabricGroup,
+                       group_representation = "stars",
+                       star_centroid_radius = 0,
+                       star_label_cex = .8,
+                       arrow_min_dist = .5,
+                       arrow_body_length = .025,
+                       subtitle = prot3_3d$sub3D,
+                       test_text = prot3_tests$text(prot3_tests),
+                       test_cex = 1.25,
+                       test_fig = c(0, 0.5, 0.65, .99),
+                       view_zoom = 0.9)
+
+biplot2d3d::animation(directory = directories$prot3,
+                       file_name = "Prot3_Biplot3D")
+```
+
+![Prot3_Biplot3D.gif](Appendix_E_Animated_GIFs/E3_Prot3_Biplot3D.gif)
+
+\pagebreak
+

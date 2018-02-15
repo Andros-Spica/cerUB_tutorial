@@ -1,0 +1,124 @@
+---
+title: 'Appendix C: Using cerUB for exploring wine Roman amphorae'
+author: "Andreas Angourakis and Verònica Martínez Ferreras"
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    fig_caption: yes
+    fig_height: 7
+    fig_width: 7
+    highlight: tango
+    number_sections: yes
+    toc: yes
+fontsize: 12pt
+geometry: margin = 1.2in
+header-includes:
+- \usepackage{placeins}
+- \usepackage{fancyhdr}
+- \usepackage{setspace}
+- \usepackage{chngcntr}
+- \usepackage{microtype}
+always_allow_html: yes
+abstract: |
+  This document shows how to use *cerUB* protocols to explore petrographic and compositional data. As an example, we provide the 'amphorae' dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a version of the Appendix C of a (to be) published article in Journal of Archaeological Science (pending reference). [ ]{#index}
+urlcolor: blue
+---
+
+```{r, echo = FALSE}
+library(knitr)
+opts_chunk$set(collapse = TRUE, comment = "#>")
+library(png)
+library(grid)
+library(gridExtra)
+```
+
+
+---
+
+
+\newpage
+\fancyhead[CO,CE]{Installing cerUB}
+
+```{r child = '1_installing.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Initial procedures}
+
+```{r child = '2_init.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Protocol 1 - Geochemical data}
+
+```{r child = '3_prot1.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Protocol 2 - Petrographic data}
+
+```{r child = '4_prot2.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Protocol 3 - Geochemical and petrographic data}
+
+```{r child = '5_prot3.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Protocol 4 - Provenance data}
+
+```{r child = '6_prot4.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Protocol 4 - Provenance data with shipwrecks}
+
+```{r child = '7_prot4_ship.Rmd'}
+```
+
+----
+
+[< back to index](#index)
+
+
+\newpage
+\fancyhead[CO,CE]{Appendix: Interpreting biplots}
+
+```{r child = '8_Appendix_biplot.Rmd'}
+```
+
+----
+
+[< back to index](#index)
