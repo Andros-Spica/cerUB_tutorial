@@ -1,0 +1,11 @@
+---
+output: html_document
+---
+
+# cerUB tutorial
+
+Tutorial showcasing the cerUB package for R ([cerUB](github.com/Andros-Spica/cerUB)).
+
+Click [here](Main_Using_cerUB.html) to follow the tutorial. All rmarkdown (.Rmd) source files  are available in the [repository](github.com/Andros-Spica/cerUB_tutorial).
+
+There, the [publication appendices](github.com/Andros-Spica/cerUB_tutorial/publication_appendices) folder contains alternative versions of the appendices (supplementary materials) of an article (to be) published in Journal of Archaeological Science (*PENDING REFERENCE*).
