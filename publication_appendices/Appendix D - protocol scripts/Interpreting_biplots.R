@@ -40,7 +40,8 @@ biplot_2d(prot1,
           arrow_label_cex = 0.7,
           test_text = prot1_tests$text(prot1_tests),
           test_cex = 0.8,
-          test_fig = c(0, 0.5, 0.65, .99))
+          test_fig = c(0, 0.5, 0.65, .99),
+          output_type = "preview")
 
 
 # Interpret Protocol 1 in terms of CaO
@@ -98,7 +99,8 @@ isDisplayed <-
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      ylim = c(-.3,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       point_type = "point",
                       groups = factor_list$FabricGroup,
                       group_color = color_list$FabricGroup,
@@ -109,9 +111,10 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       arrow_label_adj_override = arrows_label_adj,
                       subtitle = prot2a_2d$sub2D,
                       test_text = prot2a_tests$text(prot2a_tests),
+                      test_cex = 0.8,
                       test_fig = c(0, 0.5, 0.65, .99),
                       fitAnalysis_fig = c(0,.7,.05,.5),
-                      output_type = c("preview"))
+                      output_type = "preview")
 
 # Interpret Protocol 2a in terms of INCLUS_ORIENT
 
@@ -139,7 +142,8 @@ arrow_colors <- arrow_colors[isDisplayed]
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      ylim = c(-.3,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       groups = I2,
                       group_color = I2_colors,
                       group_star_cex = 0,
@@ -158,7 +162,7 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       test_text = prot1_tests_I2$text(prot1_tests_I2),
                       test_cex = 0.8,
                       test_fig = c(0, 0.5, 0.65, .99),
-                      output_type = c("preview"))
+                      output_type = "preview")
 
 # Interpret Protocol 2a in terms of COAR_R_CHERT
 
@@ -181,7 +185,8 @@ arrow_colors <- arrow_colors[isDisplayed]
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      ylim = c(-.3,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       groups = L33,
                       group_color = L33_colors,
                       group_star_cex = 0,
@@ -200,6 +205,6 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       test_text = prot1_tests_L33$text(prot1_tests_L33),
                       test_cex = 0.8,
                       test_fig = c(0, 0.5, 0.65, .99),
-                      output_type = c("preview"))
+                      output_type = "preview")
 
 #----

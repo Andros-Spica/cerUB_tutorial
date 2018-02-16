@@ -87,7 +87,7 @@ biplot2d3d::biplot_2d(prot4_Shipwreck_2d,
                       test_text = 
                         prot4_Shipwreck_tests$text(prot4_Shipwreck_tests),
                       test_cex = 0.8,
-                      test_fig = c(0, 0.5, 0.65, .99),
+                      test_fig = c(0, 0.5, 0.62, .99),
                       fitAnalysis_fig = c(0,.7,.05,.5),
                       output_type = "preview")
 

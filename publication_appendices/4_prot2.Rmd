@@ -77,7 +77,7 @@ names(prot2b_2d)
 
 The fabric groups defined in previous studies can be tested against Protocol 2 distance matrices. We can use either "prot2a_2d\$dist_matrix" or "prot2a_3d\$dist_matrix", because they are the same. Remember that this test batch may take several minutes.
 
-```{r}
+```{r, results='hide'}
 prot2a_tests <- test_groups(prot2a_2d$dist_matrix, 
                             factor_list$FabricGroup)
 prot2b_tests <- test_groups(prot2b_2d$dist_matrix,
@@ -86,14 +86,9 @@ prot2b_tests <- test_groups(prot2b_2d$dist_matrix,
 
 These tests were explained in [protocol 1](#tests).
 
-\pagebreak
-
 ## Biplots
 
 The details on how to create biplots is already explained in [protocol 1](#biplots). Concerning protocol 2, we can compare the results of version *2a* (RRD, PCoA) and *2b* (NI, NMDS).
-
-\pagebreak
-
 
 ### Biplot 2D
 
@@ -106,8 +101,8 @@ row.names(arrows_label_adj) <- c("L48","L24","L5","L36","S7",
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      xlim = c(-.26,.31),
-                      ylim = c(-.31,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       point_type = "point",
                       groups = factor_list$FabricGroup,
                       group_color = color_list$FabricGroup,
@@ -118,6 +113,7 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       arrow_label_adj_override = arrows_label_adj,
                       subtitle = prot2a_2d$sub2D,
                       test_text = prot2a_tests$text(prot2a_tests),
+                      test_cex = 0.8,
                       test_fig = c(0, 0.5, 0.62, .99),
                       fitAnalysis_fig = c(0,.7,.05,.5),
                       output_type = "preview")
@@ -133,8 +129,8 @@ row.names(arrows_label_adj) <- c("S7","S8","CLAY","L24","L43",
 
 biplot2d3d::biplot_2d(prot2b_2d,
                       ordination_method = "NMDS",
-                      invert_coordinates = c (FALSE,TRUE),
-                      ylim = c(-.4,.35),
+                      xlim = c(-.42,.38),
+                      ylim = c(-.45,.25),
                       point_type = "point",
                       groups = factor_list$FabricGroup,
                       group_color = color_list$FabricGroup,
@@ -145,8 +141,10 @@ biplot2d3d::biplot_2d(prot2b_2d,
                       arrow_label_adj_override = arrows_label_adj,
                       subtitle = prot2b_2d$sub2D,
                       test_text = prot2b_tests$text(prot2b_tests),
+                      test_cex = 0.8,
                       test_fig = c(0, 0.5, 0.62, .99),
-                      fitAnalysis_fig = c(.1,.6,.1,.34),
+                      fitAnalysis_stress_axis_cex = 0.8,
+                      fitAnalysis_fig = c(.1,.6,.1,.4),
                       output_type = "preview")
 ```
 
@@ -157,23 +155,23 @@ biplot2d3d::biplot_2d(prot2b_2d,
 
 ```{r, eval=FALSE}
 biplot2d3d::biplot_3d(prot2a_3d,
-                       ordination_method = "PCoA",
-                       point_type = "point",
-                       groups = factor_list$FabricGroup,
-                       group_color = color_list$FabricGroup,
-                       group_representation = "stars",
-                       star_centroid_radius = 0,
-                       star_label_cex = .8,
-                       arrow_min_dist = .5,
-                       arrow_body_length = .025,
-                       subtitle = prot2a_3d$sub3D,
-                       test_text = prot2a_tests$text(prot2a_tests),
-                       test_cex = 1.25,
-                       test_fig = c(0, 0.5, 0.65, .99),
-                       view_zoom = 0.9)
+                      ordination_method = "PCoA",
+                      point_type = "point",
+                      groups = factor_list$FabricGroup,
+                      group_color = color_list$FabricGroup,
+                      group_representation = "stars",
+                      star_centroid_radius = 0,
+                      star_label_cex = .8,
+                      arrow_min_dist = .5,
+                      arrow_body_length = .025,
+                      subtitle = prot2a_3d$sub3D,
+                      test_text = prot2a_tests$text(prot2a_tests),
+                      test_cex = 1.25,
+                      test_fig = c(0, 0.5, 0.65, .99),
+                      view_zoom = 0.9)
 
 biplot2d3d::animation(directory = directories$prot2,
-                       file_name = "Prot2a_Biplot3D")
+                      file_name = "Prot2a_Biplot3D")
 ```
 
 ![Prot2a_Biplot3D_snapshot.png](Appendix_E_Animated_GIFs/E2_Prot2a_Biplot3D.gif)
@@ -182,23 +180,23 @@ biplot2d3d::animation(directory = directories$prot2,
 
 ```{r, eval=FALSE}
 biplot2d3d::biplot_3d(prot2b_3d,
-                       ordination_method = "NMDS",
-                       point_type = "point",
-                       groups = factor_list$FabricGroup,
-                       group_color = color_list$FabricGroup,
-                       group_representation = "stars",
-                       star_centroid_radius = 0,
-                       star_label_cex = .8,
-                       arrow_min_dist = .5,
-                       arrow_body_length = .025,
-                       subtitle = prot2b_3d$sub3D,
-                       test_text = prot2b_tests$text(prot2b_tests),
-                       test_cex = 1.25,
-                       test_fig = c(0, 0.5, 0.65, .99),
-                       view_zoom = 0.9)
+                      ordination_method = "NMDS",
+                      point_type = "point",
+                      groups = factor_list$FabricGroup,
+                      group_color = color_list$FabricGroup,
+                      group_representation = "stars",
+                      star_centroid_radius = 0,
+                      star_label_cex = .8,
+                      arrow_min_dist = .5,
+                      arrow_body_length = .025,
+                      subtitle = prot2b_3d$sub3D,
+                      test_text = prot2b_tests$text(prot2b_tests),
+                      test_cex = 1.25,
+                      test_fig = c(0, 0.5, 0.65, .99),
+                      view_zoom = 0.9)
 
 biplot2d3d::animation(directory = directories$prot2,
-                       file_name = "Prot2b_Biplot3D")
+                      file_name = "Prot2b_Biplot3D")
 ```
 
 ![Prot2b_Biplot3D_snapshot.png](Appendix_E_Animated_GIFs/E2_Prot2b_Biplot3D.gif)

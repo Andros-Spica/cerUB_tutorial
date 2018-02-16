@@ -33,7 +33,7 @@ biplot_2d(prot1,
           arrow_label_cex = 0.7,
           test_text = prot1_tests$text(prot1_tests),
           test_cex = 0.8,
-          test_fig = c(0, 0.5, 0.62, .99),
+          test_fig = c(0, 0.5, 0.65, .99),
           output_type = "preview")
 ```
 
@@ -41,7 +41,7 @@ biplot_2d(prot1,
 
 Therefore, we can safely interpret positions in terms of having more or less CaO and MgO. For instance, we can classify observations by levels of CaO content and test it against protocol 1 distance matrix and 2D projection:
 
-```{r}
+```{r, results='hide'}
 # Create factor variable containing the classification (5 categories)
 CaO_level <- cut(cleanAmphorae$CaO[!isShipwreck], 5)
 
@@ -51,7 +51,9 @@ CaO_level_colors <- topo.colors(nlevels(CaO_level))
 # Test the classification
 prot1_tests_CaO <- test_groups(prot1$dist_matrix, CaO_level)
 ```
-\pagebreak
+
+
+
 ```{r, fig.width=4.5, fig.height=4.5, fig.cap = "Protocol 1, grouping by level of CaO content"}
 # This is for highlighting CaO arrow
 arrow_colors <- rep("darkorange", nrow(prot1$loadings))
@@ -74,7 +76,7 @@ biplot_2d(prot1,
           arrow_color = arrow_colors,
           test_text = prot1_tests_CaO$text(prot1_tests_CaO),
           test_cex = 0.8,
-          test_fig = c(0, 0.5, 0.62, .99),
+          test_fig = c(0, 0.5, 0.65, .99),
           output_type = "preview")
 ```
 
@@ -97,13 +99,15 @@ isDisplayed <-
     filter_arrows(prot2a_2d$loadings, min_dist = 0.5))
 
 ```
-\pagebreak
+
+
+
 ```{r, fig.width=4.5, fig.height=4.5, fig.cap = "protocol 2a, representing and testing fabric groups"}
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      xlim = c(-.26,.31),
-                      ylim = c(-.31,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       point_type = "point",
                       groups = factor_list$FabricGroup,
                       group_color = color_list$FabricGroup,
@@ -114,7 +118,8 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       arrow_label_adj_override = arrows_label_adj,
                       subtitle = prot2a_2d$sub2D,
                       test_text = prot2a_tests$text(prot2a_tests),
-                      test_fig = c(0, 0.5, 0.62, .99),
+                      test_cex = 0.8,
+                      test_fig = c(0, 0.5, 0.65, .99),
                       fitAnalysis_fig = c(0,.7,.05,.5),
                       output_type = "preview")
 ```
@@ -125,7 +130,7 @@ Like in protocol 1, we may want to interpret this projection in terms of a singl
 
 In this case, I2 (or INCLUS_ORIENT) is already a factor variable (classification) with 3 categories (plus "none" as a missing value). Note that the selected dataset will have cases in only two of those categories.
 
-```{r}
+```{r, results='hide'}
 # You may want to assure that the true 
 # categories are corectly represented:
 cleanAmphorae <- order_petro(cleanAmphorae)
@@ -152,8 +157,8 @@ arrow_colors <- arrow_colors[isDisplayed]
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      xlim = c(-.26,.31),
-                      ylim = c(-.31,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       groups = I2,
                       group_color = I2_colors,
                       group_star_cex = 0,
@@ -171,7 +176,7 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       subtitle = prot2a_2d$sub2D,
                       test_text = prot1_tests_I2$text(prot1_tests_I2),
                       test_cex = 0.8,
-                      test_fig = c(0, 0.5, 0.62, .99),
+                      test_fig = c(0, 0.5, 0.65, .99),
                       output_type = "preview")
 ```
 
@@ -179,7 +184,7 @@ biplot2d3d::biplot_2d(prot2a_2d,
 
 This kind of reading becomes increasingly difficult when focusing in variables that are not so well aligned, such as L33 (or COAR_R_CHERT)
 
-```{r}
+```{r, results='hide'}
 # Declare this factor separately as an object for clearness
 L33 <- cleanAmphorae$COAR_R_CHERT[!isShipwreck]
 
@@ -200,8 +205,8 @@ arrow_colors <- arrow_colors[isDisplayed]
 biplot2d3d::biplot_2d(prot2a_2d,
                       ordination_method = "PCoA",
                       invert_coordinates = c (TRUE,TRUE),
-                      xlim = c(-.26,.31),
-                      ylim = c(-.31,.29),
+                      xlim = c(-.26,.35),
+                      ylim = c(-.31,.35),
                       groups = L33,
                       group_color = L33_colors,
                       group_star_cex = 0,
@@ -219,7 +224,7 @@ biplot2d3d::biplot_2d(prot2a_2d,
                       subtitle = prot2a_2d$sub2D,
                       test_text = prot1_tests_L33$text(prot1_tests_L33),
                       test_cex = 0.8,
-                      test_fig = c(0, 0.5, 0.62, .99),
+                      test_fig = c(0, 0.5, 0.65, .99),
                       output_type = "preview")
 ```
 

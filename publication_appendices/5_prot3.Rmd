@@ -55,14 +55,12 @@ prot3_3d <- simplify_coda_names(prot3_3d)
 
 Because protocol 3 uses both geochemical and petrographic information, we can test the provenance assigned to the amphorae samples.
 
-```{r}
+```{r, results='hide'}
 prot3_tests <- test_groups(prot3_2d$dist_matrix, 
                            factor_list$ProvGroup)
 ```
 
 These tests were explained in [protocol 1](#tests).
-
-\pagebreak
 
 ## Biplots
 
@@ -90,6 +88,7 @@ biplot2d3d::biplot_2d(prot3_2d,
                       arrow_label_adj_override = arrows_label_adj,
                       subtitle = prot3_2d$sub2D,
                       test_text = prot3_tests$text(prot3_tests),
+                      test_cex = 0.8,
                       test_fig = c(0, 0.5, 0.62, .99),
                       fitAnalysis_fig = c(0,.7,.05,.5),
                       output_type = "preview")
@@ -101,26 +100,25 @@ biplot2d3d::biplot_2d(prot3_2d,
 
 ```{r, eval=FALSE}
 biplot2d3d::biplot_3d(prot3_3d,
-                       ordination_method = "PCoA",
-                       point_type = "point",
-                       groups = factor_list$FabricGroup,
-                       group_color = color_list$FabricGroup,
-                       group_representation = "stars",
-                       star_centroid_radius = 0,
-                       star_label_cex = .8,
-                       arrow_min_dist = .5,
-                       arrow_body_length = .025,
-                       subtitle = prot3_3d$sub3D,
-                       test_text = prot3_tests$text(prot3_tests),
-                       test_cex = 1.25,
-                       test_fig = c(0, 0.5, 0.65, .99),
-                       view_zoom = 0.9)
+                      ordination_method = "PCoA",
+                      point_type = "point",
+                      groups = factor_list$FabricGroup,
+                      group_color = color_list$FabricGroup,
+                      group_representation = "stars",
+                      star_centroid_radius = 0,
+                      star_label_cex = .8,
+                      arrow_min_dist = .5,
+                      arrow_body_length = .025,
+                      subtitle = prot3_3d$sub3D,
+                      test_text = prot3_tests$text(prot3_tests),
+                      test_cex = 1.25,
+                      test_fig = c(0, 0.5, 0.65, .99),
+                      view_zoom = 0.9)
 
 biplot2d3d::animation(directory = directories$prot3,
-                       file_name = "Prot3_Biplot3D")
+                      file_name = "Prot3_Biplot3D")
 ```
 
 ![Prot3_Biplot3D.gif](Appendix_E_Animated_GIFs/E3_Prot3_Biplot3D.gif)
 
 \pagebreak
-

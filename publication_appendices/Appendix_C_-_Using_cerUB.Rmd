@@ -1,6 +1,6 @@
 ---
 title: 'Appendix C: Using cerUB for exploring wine Roman amphorae'
-author: "Andreas Angourakis and Verònica Martínez Ferreras"
+author: "Andreas Angourakis and Ver\u00f2nica Mart\u00ednez Ferreras"
 date: '`r Sys.Date()`'
 output:
   pdf_document:
@@ -20,11 +20,11 @@ header-includes:
 - \usepackage{microtype}
 always_allow_html: yes
 abstract: |
-  This document shows how to use *cerUB* protocols to explore petrographic and compositional data. As an example, we provide the 'amphorae' dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a version of the Appendix C of a (to be) published article in Journal of Archaeological Science (pending reference). [ ]{#index}
+  This document shows how to use *cerUB* protocols to explore petrographic and compositional data. As an example, we provide the 'amphorae' dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain.
 urlcolor: blue
 ---
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE, warning=FALSE, results='hide'}
 library(knitr)
 opts_chunk$set(collapse = TRUE, comment = "#>")
 library(png)

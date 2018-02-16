@@ -172,7 +172,7 @@ biplot_2d(prot1,
 \pagebreak
 
 To get a prettier plot or match your research needs, you can play with the options given by the **biplot_2d**.  
-Note that groups are by default marked using inertia ellipses. They can only be interpreted as confidence ellipses if each group can be assumed to be normally distributed in all variables considered (see more details on the scaling factor "group_ellipse_cex" in the help file). This is often not a reasonable assumption concerning multivariate data, particularly of samples of archaeological ceramics.  
+Note that groups are by default marked using inertia ellipses. They can only be interpreted as confidence ellipses if each group can be assumed to be normally distributed in all variables considered (see more details on the scaling factor "group_ellipse_cex" in the help file). This is often reasonable concerning groups that are either too small (< 10) or contain subgroups.  
 In the argument "test_text" you can introduce the "text" function of the "prot1_tests" object.
 
 ```{r, fig.width=4.5, fig.height=4.5, fig.cap = "tunning appearance, groups with colors"}
@@ -203,6 +203,7 @@ biplot_2d(prot1,
           invert_coordinates = c(TRUE, TRUE),
           arrow_label_cex = 0.7,
           test_text = prot1_tests$text(prot1_tests),
+          test_cex = 0.8,
           test_fig = c(0, 0.5, 0.65, .99),
           output_type = "preview")
 ```
@@ -380,4 +381,3 @@ biplot2d3d::biplot_2d(prot1_CLR,
                       output_type = "preview")
 ```
 
-\pagebreak
