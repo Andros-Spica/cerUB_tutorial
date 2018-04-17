@@ -1,6 +1,11 @@
-# cerUB_tutorial
-Tutorial showcasing the cerUB package for R ([cerUB](github.com/Andros-Spica/cerUB)).
+# cerUB tutorial
 
-Click [here](html_tutorial/Main_Using_cerUB.html) to enter the html version, which was generated with the rmarkdown (.Rmd) files placed in the main folder.
+Tutorial showcasing the cerUB package for R ([cerUB](https://github.com/Andros-Spica/cerUB)).
 
-The 'publication appendices' folder contains alternative versions of the appendices (supplementary materials) of an article (to be) published in Journal of Archaeological Science (*PENDIG REFERENCE*).
+Click [here](Main_Using_cerUB.html) to follow the tutorial. All rmarkdown (.Rmd) source files  are available in the [repository](https://github.com/Andros-Spica/cerUB_tutorial).
+
+There, the [publication appendices](https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices) folder contains alternative versions of the appendices (supplementary materials) of the related article:
+
+> Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
+
+Please, address any issues, suggestions, and comments to Andreas Angourakis (andros.spica@gmail.com, or through *GitHub*, user **Andros-Spica**)
