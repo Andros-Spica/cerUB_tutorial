@@ -2,7 +2,7 @@
 
 Tutorial showcasing the cerUB package for R ([cerUB](https://github.com/Andros-Spica/cerUB)).
 
-Click [here](https://andros-spica.github.io/cerUB_tutorial/Main_Using_cerUB.html) to follow the tutorial. All rmarkdown (.Rmd) source files  are available in the [repository](https://github.com/Andros-Spica/cerUB_tutorial).
+Click [here](https://andros-spica.github.io/cerUB_tutorial/index.html) to follow the tutorial. All rmarkdown (.Rmd) source files  are available in the [repository](https://github.com/Andros-Spica/cerUB_tutorial).
 
 There, the [publication appendices](https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices) folder contains alternative versions of the appendices (supplementary materials) of the related article:
 
