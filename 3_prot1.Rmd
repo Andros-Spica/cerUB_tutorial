@@ -193,7 +193,7 @@ Protocol 1 consist in:
 
 Last, search for outliers and re-do protocol excluding outliers.
 
-NOTE: The initial procedures must be ran at least once before any protocol can be applied.
+NOTE: The [initial procedures](#init) must be ran at least once before any protocol can be applied.
 
 
 ## Ordination procedure
@@ -286,7 +286,7 @@ A rule-of-thumb for interpreting PERMANOVA and PERMDISP2 results is: if both p-v
 
 \pagebreak
 
-## Biplots
+## Biplots {#biplot}
 
 Ordination objects are best represented in biplots, which simultaneously display the projections of observations (points) and variables (arrows) over the same space. There are several options for creating biplots in R, starting with the readily available **biplot** function:
 

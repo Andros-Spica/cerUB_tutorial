@@ -190,7 +190,7 @@ The first big difference between biplots and scatter plots lies in their names. 
 
 There is another, more subtle, difference between biplots and scatter plots. The latter will unequivocally place points according to their values in each of the variables considered. Biplots, in turn,  are projections of distributions or 'point clouds' that are multidimensional (i.e., multivariate data). Even in the best scenarios, biplots cannot represent such clouds in their full form. Imagine trying to draw a dice on a sheet of paper.
 
-As an example, consider the outcome of [protocol 1](3_prot1.html). In this case, robust PCA generated a good 2D projection (around 78% of variance) where CaO and MgO are the major contributors.
+As an example, consider the outcome of [protocol 1](#prot1). In this case, robust PCA generated a good 2D projection (around 78% of variance) where CaO and MgO are the major contributors.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 prot1 <- apply_ordination(cleanAmphorae[!isShipwreck,], # no shipwrecks
@@ -270,7 +270,7 @@ biplot_2d(prot1,
 
 However, interpretation is less straightforward when more than two variables contribute significantly to the total variation. Regarding biplots, such situation implies that a smaller portion of variation is represented, and that several variables are stretch on many directions over the two principal coordinates.
 
-For example, [protocol 2](4_prot2.html) gave us a much worse 2D projection (55.7%) where fifteen variables are well represented.
+For example, [protocol 2](#prot2) gave us a much worse 2D projection (55.7%) where fifteen variables are well represented.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 prot2a_2d <- apply_ordination(cleanAmphorae[!isShipwreck,],

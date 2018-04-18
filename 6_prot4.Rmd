@@ -194,7 +194,7 @@ Protocol 4 consist in:
 
 Last, search for outliers and re-do protocol excluding outliers.
 
-NOTE: The initial procedures must be ran at least once before any protocol can be applied.
+NOTE: The [initial procedures](#init) must be ran at least once before any protocol can be applied.
 
 
 ## Ordination procedure
@@ -258,7 +258,7 @@ These tests were explained in [protocol 1](#tests).
 
 ## Biplots
 
-The details on how to create biplots is already explained in [protocol 1](3_prot1.html). As protocol 3, protocol 4 only generates one kind of projection (RRD, PCoA).
+The details on how to create biplots is already explained in [protocol 1](#biplot). As protocol 3, protocol 4 only generates one kind of projection (RRD, PCoA).
 
 ### Biplot 2D
 

@@ -1,7 +1,33 @@
 ---
 site: "bookdown::bookdown_site"
+url: 'https\://andros-spica.github.io/cerUB_tutorial/Main_Using_cerUB.html'
+github-repo: "Andros-Spica/cerUB_tutorial"
 output:
-  bookdown::gitbook: default
+  bookdown::gitbook:
+  config:
+    toc:
+      collapse: subsection
+      scroll_highlight: yes
+      before: null
+      after: null
+    toolbar:
+      position: fixed
+    edit : no
+    download: no
+    search: yes
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+    sharing:
+      facebook: yes
+      twitter: yes
+      google: no
+      linkedin: no
+      weibo: no
+      instapper: no
+      vk: no
+      all: ['facebook', 'google', 'twitter', 'linkedin', 'weibo', 'instapaper']
   html_document: defaulf
 ---
 
@@ -11,14 +37,14 @@ Tutorial showcasing the cerUB package for R ([cerUB](https://github.com/Andros-S
 
 This document shows how to use *cerUB* protocols to explore petrographic and compositional data. As an example, we provide the 'amphorae' dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).
 
-1. [Installing cerUB]{#install}
-2. [Initial procedures]{#init}
-3. [Protocol 1 - Geochemical data]{#prot1}
-4. [Protocol 2 - Petrographic data]{#prot2}
-5. [Protocol 3 - Geochemical and petrographic data]{#prot3}
-6. [Protocol 4 - Provenance data]{#prot4}
-7. [Protocol 4 - Provenance data with shipwrecks]{#prot4_ship}
-8. [Appendix: Interpreting biplots]{#biplots}
+1. [Installing cerUB](#install)
+2. [Initial procedures](#init)
+3. [Protocol 1 - Geochemical data](#prot1)
+4. [Protocol 2 - Petrographic data](#prot2)
+5. [Protocol 3 - Geochemical and petrographic data](#prot3)
+6. [Protocol 4 - Provenance data](#prot4)
+7. [Protocol 4 - Provenance data with shipwrecks](#prot4_ship)
+8. [Appendix: Interpreting biplots](#biplots)
 
 ---
 

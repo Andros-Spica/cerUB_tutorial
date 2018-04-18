@@ -198,7 +198,7 @@ Protocol 2 consist in:
 
 Last, search for outliers and re-do protocol excluding outliers.
 
-NOTE: The initial procedures must be ran at least once before any protocol can be applied.
+NOTE: The [initial procedures](#init) must be ran at least once before any protocol can be applied.
 
 The key references on the Extended Gower distance are:
 
@@ -268,7 +268,7 @@ These tests were explained in [protocol 1](#tests).
 
 ## Biplots
 
-The details on how to create biplots is already explained in [protocol 1](3_prot1.html). Concerning protocol 2, we can compare the results of version *2a* (RRD, PCoA) and *2b* (NI, NMDS).
+The details on how to create biplots is already explained in [protocol 1](#biplot). Concerning protocol 2, we can compare the results of version *2a* (RRD, PCoA) and *2b* (NI, NMDS).
 
 \pagebreak
 

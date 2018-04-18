@@ -194,9 +194,9 @@ Protocol 3 consist in:
 
 Last, search for outliers and re-do protocol excluding outliers.
 
-NOTE: The [initial procedures](2_init.html) must be ran at least once before any protocol can be applied.
+NOTE: The [initial procedures](#init) must be ran at least once before any protocol can be applied.
 
-See [protocol 2](4_prot2.html), for consulting references on the extended Gower distance.
+See [protocol 2](#prot2), for consulting references on the extended Gower distance.
 
 
 ## Ordination procedure
@@ -238,13 +238,13 @@ prot3_tests <- test_groups(prot3_2d$dist_matrix,
                            factor_list$ProvGroup)
 ```
 
-These tests were explained in [protocol 1](3_prot1.html).
+These tests were explained in [protocol 1](#tests).
 
 \pagebreak
 
 ## Biplots
 
-The details on how to create biplots is already explained in [protocol 1](3_prot1.html). Unlike protocol 2, protocol 3 only generates one kind of projection (RRD, PCoA).
+The details on how to create biplots is already explained in [protocol 1](#biplot). Unlike protocol 2, protocol 3 only generates one kind of projection (RRD, PCoA).
 
 ### Biplot 2D
 
