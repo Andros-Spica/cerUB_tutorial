@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-11-other-coda-packages.html">
+<link rel="next" href="3-1-ordination-procedure.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
+<div id="prot1" class="section level1">
+<h1><span class="header-section-number">3</span> Protocol 1 - Geochemical data</h1>
+<p>The following example applies protocol 1 to confirm the workshops’ chemical reference groups.</p>
+<p>Protocol 1 consist in:</p>
 <ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
+<li>Select <strong><em>geochemical</em></strong> compositional data (CoDa);</li>
+<li>Apply <strong><em>transformation</em></strong>;</li>
+<li>Perform <strong><em>robust Principal Components Analysis</em></strong> (robPCA), implicitly using Euclidean distance;</li>
+<li>Perform <strong><em>PERMANOVA &amp; PERMDISP</em></strong> tests;</li>
 </ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
-
+<p>Last, search for outliers and re-do protocol excluding outliers.</p>
+<p>NOTE: The <a href="2-init.html#init">initial procedures</a> must be ran at least once before any protocol can be applied.</p> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-11-other-coda-packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-1-ordination-procedure.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-6-organizing-groups.html">
+<link rel="next" href="2-8-enunciate-exception-columns.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,58 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
+<div id="helper-objects-for-plotting" class="section level2">
+<h2><span class="header-section-number">2.7</span> Helper objects for plotting</h2>
+<p>Build lists of named point types vectors for easiness of reference.</p>
+<p>Create point type vectors for the whole dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">labels_code &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">row.names</span>(cleanAmphorae)) <span class="co"># using row names</span>
+labels_cross &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;+&quot;</span>, <span class="kw">nrow</span>(cleanAmphorae)) <span class="co"># using +</span>
+labels_x &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">4</span>, <span class="kw">nrow</span>(cleanAmphorae)) <span class="co"># using pch code</span>
+labels_point &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">20</span>, <span class="kw">nrow</span>(cleanAmphorae)) <span class="co"># using pch code</span></code></pre></div>
+<p>Create a list aiming to define workshops productions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">labels_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">Code =</span> labels_code[<span class="op">!</span>isShipwreck],
+  <span class="dt">Cross =</span> labels_cross[<span class="op">!</span>isShipwreck],
+  <span class="dt">X =</span> labels_x[<span class="op">!</span>isShipwreck],
+  <span class="dt">Point =</span> labels_point[<span class="op">!</span>isShipwreck]
+)</code></pre></div>
+<p>Create a list aiming to assign shipwreck observations to workshop productions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">labels_list_Shipwreck &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">Code =</span> labels_code[<span class="op">!</span>isTrueIND],
+  <span class="dt">Cross =</span> labels_cross[<span class="op">!</span>isTrueIND],
+  <span class="dt">X =</span> labels_x[<span class="op">!</span>isTrueIND],
+  <span class="dt">Point =</span> labels_point[<span class="op">!</span>isTrueIND]
+)</code></pre></div>
+<p>Build two other lists containing named group color vectors, picking different colors within the <strong>rainbow</strong> palette:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">color_list &lt;-<span class="st"> </span><span class="kw">list</span>()
 
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(factor_list)){
+  cv &lt;-<span class="st"> </span><span class="kw">rainbow</span>(<span class="kw">nlevels</span>(factor_list[[i]]), <span class="dt">v=</span>.<span class="dv">8</span>)
+  color_list[[i]] &lt;-<span class="st"> </span>cv
+  <span class="kw">names</span>(color_list)[i] =<span class="st"> </span><span class="kw">names</span>(factor_list)[i]
+}
+
+color_list_Shipwreck &lt;-<span class="st"> </span><span class="kw">list</span>()
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(factor_list_Shipwreck)){
+  cv &lt;-<span class="st"> </span><span class="kw">rainbow</span>(<span class="kw">nlevels</span>(factor_list_Shipwreck[[i]]), <span class="dt">v=</span>.<span class="dv">8</span>)
+  color_list_Shipwreck[[i]] &lt;-<span class="st"> </span>cv
+  <span class="kw">names</span>(color_list_Shipwreck)[i] =<span class="st"> </span><span class="kw">names</span>(factor_list_Shipwreck)[i]
+}</code></pre></div>
+<p>To visualize the colors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+<span class="kw">barplot</span>(<span class="kw">rep</span>(<span class="dv">100</span>, <span class="kw">nlevels</span>(factor_list<span class="op">$</span>ProvGroup)), 
+        <span class="dt">col =</span> color_list<span class="op">$</span>ProvGroup, 
+        <span class="dt">axes =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-6-organizing-groups.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-8-enunciate-exception-columns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

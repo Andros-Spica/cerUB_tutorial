@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="3-5-comparing-coda-transformations.html">
+<link rel="next" href="4-1-ordination-procedure-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,50 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
+<div id="prot2" class="section level1">
+<h1><span class="header-section-number">4</span> Protocol 2 - Petrographic data</h1>
+<p>The following example applies protocol 2 to confirm workshops’ petrographic groups.</p>
+<p>Protocol 2 consist in:</p>
 <ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
+<li>Select ordinal <strong><em>petrographic</em></strong> data;</li>
+<li>Transform to <strong><em>ranks</em></strong>;</li>
+<li><strong><em>Extended Gower distance</em></strong>, using:</li>
 </ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>Relative ranking difference</strong> (RRD)</li>
+<li><strong>Neighbor interchange</strong> (NI)</li>
+</ol>
+<ol start="4" style="list-style-type: decimal">
+<li>Apply ordination procedure:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><strong><em>Principal Coordinates Analysis</em></strong> (PCoA)</li>
+<li><strong><em>Non-metric Dimensional Scaling</em></strong> (NMDS)</li>
+</ol>
+<ol start="5" style="list-style-type: decimal">
+<li>Perform <strong><em>PERMANOVA &amp; PERMDISP</em></strong> tests;</li>
+</ol>
+<p>Last, search for outliers and re-do protocol excluding outliers.</p>
+<p>NOTE: The <a href="2-init.html#init">initial procedures</a> must be ran at least once before any protocol can be applied.</p>
+<p>The key references on the Extended Gower distance are:</p>
 <blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
+<p>Pavoine, S., Vallet, J., Dufour, A.-B., Gachet, S., Daniel, H., 2009. On the challenge of treating various types of variables: application for improving the measurement of functional diversity. Oikos 118, 391-402. <a href="doi:10.1111/j.1600-0706.2008.16668.x" class="uri">doi:10.1111/j.1600-0706.2008.16668.x</a></p>
 </blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
-
+<blockquote>
+<p>Podani, J., 1999. Extending Gower’s General Coefficient of Similarity to Ordinal Characters on JSTOR. Taxon 48, 331-340. <a href="doi:10.2307/1224438" class="uri">doi:10.2307/1224438</a></p>
+</blockquote>
+<blockquote>
+<p>Gower, J.C., 1971. A General Coefficient of Similarity and Some of Its Properties. Biometrics 27, 857-871. <a href="doi:10.2307/2528823" class="uri">doi:10.2307/2528823</a></p>
+</blockquote>
+ 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-5-comparing-coda-transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-1-ordination-procedure-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="4-prot2.html">
+<link rel="next" href="4-2-test-the-given-fabric-groups.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,29 +182,52 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
+<div id="ordination-procedure-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Ordination procedure</h2>
+<p>Depending on which type of distance calculation (RRD/NI), protocol 2 performs different ordination methods (PCoA/NMDS). Both PCoA and NMDS require specifying the number of dimensions in which to project the data. Therefore, you must generate specific 2D and 3D ordination objects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prot2a_2d &lt;-<span class="st"> </span><span class="kw">apply_ordination</span>(cleanAmphorae[<span class="op">!</span>isShipwreck,],
+                              <span class="st">&quot;2a&quot;</span>, <span class="co"># select protocol 2a (RRD &amp; PCoA)</span>
+                              <span class="dt">exception_columns =</span> excep_cols,
+                              <span class="dt">variable_tags =</span> varCode)
+
+prot2b_2d &lt;-<span class="st"> </span><span class="kw">apply_ordination</span>(cleanAmphorae[<span class="op">!</span>isShipwreck,],
+                              <span class="st">&quot;2b&quot;</span>, <span class="co"># select protocol 2a (NI &amp; NMDS)</span>
+                              <span class="dt">exception_columns =</span> excep_cols,
+                              <span class="dt">variable_tags =</span> varCode)
+
+prot2a_3d &lt;-<span class="st"> </span><span class="kw">apply_ordination</span>(cleanAmphorae[<span class="op">!</span>isShipwreck,],
+                              <span class="st">&quot;2a&quot;</span>, <span class="co"># select protocol 2a (RRD &amp; PCoA)</span>
+                              <span class="dt">exception_columns =</span> excep_cols,
+                              <span class="dt">variable_tags =</span> varCode,
+                              <span class="dt">dimensions =</span> <span class="dv">3</span>)
+
+prot2b_3d &lt;-<span class="st"> </span><span class="kw">apply_ordination</span>(cleanAmphorae[<span class="op">!</span>isShipwreck,],
+                              <span class="st">&quot;2b&quot;</span>, <span class="co"># select protocol 2a (NI &amp; NMDS)</span>
+                              <span class="dt">exception_columns =</span> excep_cols,
+                              <span class="dt">variable_tags =</span> varCode,
+                              <span class="dt">dimensions =</span> <span class="dv">3</span>)</code></pre></div>
+
+<p>The ordination objects generated with protocol 2 are different from those in protocol 1 since it uses different functions. However, the main components are still the same: the projection of observations or <em>scores</em> (<strong>points</strong>) and of variables or <em>loadings</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(prot2a_2d)
+<span class="co">#&gt; [1] &quot;list&quot;</span>
+<span class="kw">names</span>(prot2a_2d)
+<span class="co">#&gt;  [1] &quot;points&quot;        &quot;eig&quot;           &quot;x&quot;             &quot;ac&quot;           </span>
+<span class="co">#&gt;  [5] &quot;GOF&quot;           &quot;sub2D&quot;         &quot;GOF2_2D&quot;       &quot;loadings&quot;     </span>
+<span class="co">#&gt;  [9] &quot;variable_tags&quot; &quot;name&quot;          &quot;dist_matrix&quot;</span>
+<span class="kw">class</span>(prot2b_2d)
+<span class="co">#&gt; [1] &quot;metaMDS&quot; &quot;monoMDS&quot;</span>
+<span class="kw">names</span>(prot2b_2d)
+<span class="co">#&gt;  [1] &quot;nobj&quot;          &quot;nfix&quot;          &quot;ndim&quot;          &quot;ndis&quot;         </span>
+<span class="co">#&gt;  [5] &quot;ngrp&quot;          &quot;diss&quot;          &quot;iidx&quot;          &quot;jidx&quot;         </span>
+<span class="co">#&gt;  [9] &quot;xinit&quot;         &quot;istart&quot;        &quot;isform&quot;        &quot;ities&quot;        </span>
+<span class="co">#&gt; [13] &quot;iregn&quot;         &quot;iscal&quot;         &quot;maxits&quot;        &quot;sratmx&quot;       </span>
+<span class="co">#&gt; [17] &quot;strmin&quot;        &quot;sfgrmn&quot;        &quot;dist&quot;          &quot;dhat&quot;         </span>
+<span class="co">#&gt; [21] &quot;points&quot;        &quot;stress&quot;        &quot;grstress&quot;      &quot;iters&quot;        </span>
+<span class="co">#&gt; [25] &quot;icause&quot;        &quot;call&quot;          &quot;model&quot;         &quot;distmethod&quot;   </span>
+<span class="co">#&gt; [29] &quot;distcall&quot;      &quot;distance&quot;      &quot;converged&quot;     &quot;tries&quot;        </span>
+<span class="co">#&gt; [33] &quot;engine&quot;        &quot;species&quot;       &quot;data&quot;          &quot;init_seed&quot;    </span>
+<span class="co">#&gt; [37] &quot;trymax&quot;        &quot;sub_stress&quot;    &quot;sub2D&quot;         &quot;GOF2_2D&quot;      </span>
+<span class="co">#&gt; [41] &quot;loadings&quot;      &quot;variable_tags&quot; &quot;name&quot;          &quot;dist_matrix&quot;</span></code></pre></div>
 
 </div>
             </section>
@@ -212,8 +235,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4-prot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-2-test-the-given-fabric-groups.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

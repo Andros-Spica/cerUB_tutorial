@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-7-helper-objects-for-plotting.html">
+<link rel="next" href="2-9-choose-geochemical-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
-
+<div id="enunciate-exception-columns" class="section level2">
+<h2><span class="header-section-number">2.8</span> Enunciate exception columns</h2>
+<p>Create a vector that enunciate which ordinal variables have “none” as a exceptional value when calculating the distance between values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">excep_cols &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;INCLUS_DISTRIB&quot;</span>,<span class="st">&quot;INCLUS_ORIENT&quot;</span>,<span class="st">&quot;COAR_ROUNDNESS&quot;</span>,
+                <span class="st">&quot;COAR_FORM&quot;</span>,<span class="st">&quot;COAR_SPACING&quot;</span>,<span class="st">&quot;COAR_SORTING&quot;</span>,<span class="st">&quot;FINE_FORM&quot;</span>)</code></pre></div>
+<p>In order to understand this “exceptional value” feature, compare the levels of regular and exceptional variables. However, to do that at this point you must re-assure the order of petrographic variables (i.e. format factors levels):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cleanAmphorae &lt;-<span class="st"> </span><span class="kw">order_petro</span>(cleanAmphorae)</code></pre></div>
+<p>This step is not necessary for applying the protocols because the apply_ordination function already does it internally, before calculating distances.</p>
+<table style="width:68%;">
+<colgroup>
+<col width="23%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Variable</th>
+<th align="center">Values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">INCLUS_DISTRIB</td>
+<td align="center">poorly, poorly to moderately, moderately, moderately to well, well, none</td>
+</tr>
+<tr class="even">
+<td align="center">TEMP</td>
+<td align="center">unfired, 700-800oC, 800-900oC, 900-1000oC, 1000-1100oC</td>
+</tr>
+<tr class="odd">
+<td align="center">COAR_FREQ</td>
+<td align="center">none, very few, few, common, abundant, very abundant</td>
+</tr>
+<tr class="even">
+<td align="center">COAR_ROUNDNESS</td>
+<td align="center">angular, angular to subangular, subangular, subangular to subrounded, subrounded, subrounded to rounded, rounded, none</td>
+</tr>
+<tr class="odd">
+<td align="center">COAR_R_CALS</td>
+<td align="center">none, few, common, frequent, dominant, predominant</td>
+</tr>
+<tr class="even">
+<td align="center">FINE_FORM</td>
+<td align="center">elongate, elongate to equidimensional, equidimensional, equidimensional to laminar, laminar, none</td>
+</tr>
+<tr class="odd">
+<td align="center">FINE_C_QTZ</td>
+<td align="center">none, few, frequent, predominant</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-7-helper-objects-for-plotting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-9-choose-geochemical-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

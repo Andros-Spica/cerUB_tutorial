@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-4-clean-and-format-data.html">
+<link rel="next" href="2-6-organizing-groups.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,97 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
+<div id="subsetting-criteria" class="section level2">
+<h2><span class="header-section-number">2.5</span> Subsetting criteria</h2>
+<p>Build vector indicating whether each observation is from a shipwreck:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">isShipwreck &lt;-
+<span class="st">  </span>cleanAmphorae<span class="op">$</span>Site_Name<span class="op">==</span><span class="st">&quot;Cap del Vol&quot;</span> <span class="op">|</span>
+<span class="st">  </span>cleanAmphorae<span class="op">$</span>Site_Name<span class="op">==</span><span class="st">&quot;Ullastres I&quot;</span> <span class="op">|</span>
+<span class="st">  </span>cleanAmphorae<span class="op">$</span>Site_Name<span class="op">==</span><span class="st">&quot;Port-Vendres 4&quot;</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Workshops</th>
+<th align="right">Shipwrecks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">175</td>
+<td align="right">48</td>
+</tr>
+</tbody>
+</table>
+<p>Build vectors indicating provenance group and whether observations are true outliers (IND, observations with no group assigned). Also, reformat “FabricGroup” and “ChemReferenceGroup”, so true outliers are singled out separately and not as a extra group.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ProvenanceGroup &lt;-<span class="st"> </span><span class="kw">c</span>()
+isTrueIND &lt;-<span class="st"> </span><span class="kw">c</span>()
 
+<span class="co"># coerce the original group variables (factors) into character vectors</span>
+<span class="co"># so we can use stringr package to operate on them.</span>
+cleanAmphorae<span class="op">$</span>FabricGroup &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">as.character</span>(cleanAmphorae<span class="op">$</span>FabricGroup)
+cleanAmphorae<span class="op">$</span>ChemReferenceGroup &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">as.character</span>(cleanAmphorae<span class="op">$</span>ChemReferenceGroup)
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(cleanAmphorae)){
+  groupChem &lt;-
+<span class="st">    </span>stringr<span class="op">::</span><span class="kw">str_split</span>(cleanAmphorae<span class="op">$</span>ChemReferenceGroup[i], <span class="st">&quot;-&quot;</span>)[[<span class="dv">1</span>]]
+  groupFabric &lt;-
+<span class="st">    </span>stringr<span class="op">::</span><span class="kw">str_split</span>(cleanAmphorae<span class="op">$</span>FabricGroup[i], <span class="st">&quot;-&quot;</span>)[[<span class="dv">1</span>]]
+  group &lt;-<span class="st"> &quot;&quot;</span>
+  isATrueInd &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+
+  <span class="cf">if</span> (groupChem[<span class="dv">2</span>] <span class="op">==</span><span class="st"> &quot;IND&quot;</span> <span class="op">||</span><span class="st"> </span>groupFabric[<span class="dv">2</span>] <span class="op">==</span><span class="st"> &quot;IND&quot;</span>) {
+    group &lt;-<span class="st"> </span>cleanAmphorae<span class="op">$</span>ChemReferenceGroup[i]
+    <span class="cf">if</span> (<span class="op">!</span>isShipwreck[i]) isATrueInd &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+    index &lt;-<span class="st"> </span><span class="dv">1</span>
+    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(ProvenanceGroup)){
+      <span class="cf">if</span> (ProvenanceGroup[j] <span class="op">==</span><span class="st"> </span><span class="kw">paste</span>(group, index, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+        index &lt;-<span class="st"> </span>index <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+    }
+    group &lt;-<span class="st"> </span><span class="kw">paste</span>(group, index, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+    cleanAmphorae<span class="op">$</span>ChemReferenceGroup[i] &lt;-<span class="st"> </span>group
+    cleanAmphorae<span class="op">$</span>FabricGroup[i] &lt;-<span class="st"> </span>group
+  }
+  <span class="cf">else</span> {
+    <span class="cf">if</span> (groupChem[<span class="dv">1</span>] <span class="op">==</span><span class="st"> &quot;ULL&quot;</span> <span class="op">||</span><span class="st"> </span>
+<span class="st">        </span>groupChem[<span class="dv">1</span>] <span class="op">==</span><span class="st"> &quot;PV4&quot;</span> <span class="op">||</span><span class="st"> </span>
+<span class="st">        </span>groupChem[<span class="dv">1</span>] <span class="op">==</span><span class="st"> &quot;CDV&quot;</span>) {
+      group &lt;-<span class="st"> </span>cleanAmphorae<span class="op">$</span>ChemReferenceGroup[i]
+    }
+    <span class="cf">else</span> <span class="cf">if</span> (groupChem[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span>groupFabric[<span class="dv">1</span>]){
+      group &lt;-<span class="st"> </span>groupChem[<span class="dv">1</span>]
+    }
+  }
+  ProvenanceGroup &lt;-<span class="st"> </span><span class="kw">c</span>(ProvenanceGroup, group[<span class="dv">1</span>])
+  isTrueIND &lt;-<span class="st"> </span><span class="kw">c</span>(isTrueIND, isATrueInd)
+}</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Assigned</th>
+<th align="right">Outliers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">205</td>
+<td align="right">18</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-4-clean-and-format-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-6-organizing-groups.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="3-2-simplify-coda-names.html">
+<link rel="next" href="3-4-biplot.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,29 +182,62 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
+<div id="test-the-given-chemical-reference-groups" class="section level2">
+<h2><span class="header-section-number">3.3</span> Test the given chemical reference groups</h2>
+<p>Perform four tests (<strong>anosim</strong>, <strong>betadisper</strong>, <strong>permdisp2</strong>, and <strong>permanova</strong>) that assess the separation and uniformity of the given group factor. For more details on these tests, we refer to:</p>
 <blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
+<p>Anderson, M.J., Walsh, D.C.I., 2013. PERMANOVA, ANOSIM, and the Mantel test in the face of heterogeneous dispersions: What null hypothesis are you testing? Ecol. Monogr. 83, 557-574. <a href="doi:10.1890/12-2010.1" class="uri">doi:10.1890/12-2010.1</a></p>
 </blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
+<p>The whole test batch may take several minutes depending on the size of the data matrix and the number of groups.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prot1_tests &lt;-<span class="st"> </span><span class="kw">test_groups</span>(prot1<span class="op">$</span>dist_matrix, factor_list<span class="op">$</span>ChemGroup)
+<span class="co">#&gt; [1] &quot;initiating test batch...&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::anosim done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::betadisper done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::permutest done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::adonis done.&quot;</span>
+<span class="co">#&gt; [1] &quot;Test batch completed.&quot;</span></code></pre></div>
+<p>The tests outputs can be accessed by their name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(prot1_tests)
+<span class="co">#&gt; [1] &quot;permanova&quot; &quot;betadisp&quot;  &quot;permdisp2&quot; &quot;anosim&quot;    &quot;text&quot;</span></code></pre></div>
+<p>The object also contains a “text” object, which is a function that generates a list of text lines for plotting the results of PERMANOVA and PERMDISP2 tests. It may feel confusing, but keep in mind that this “portable” function requires the same ordination object as an argument.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">displayTestText &lt;-<span class="st"> </span><span class="cf">function</span>(test_text) {
+  <span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">fig =</span> <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.9</span>, <span class="fl">0.05</span>, <span class="fl">0.9</span>))
+  <span class="kw">plot.new</span>()
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(test_text)) {
+    
+    <span class="co"># this is for calculating the vertical </span>
+    <span class="co"># position of paragraphs and lines</span>
+    test_spacing_paragraph =<span class="st"> </span><span class="fl">0.8</span>
+    test_spacing_line =<span class="st"> </span><span class="fl">0.8</span>
+    
+    first_line_pos_y &lt;-
+<span class="st">      </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>test_spacing_paragraph <span class="op">*</span><span class="st"> </span>( (i <span class="op">-</span><span class="st"> </span>.<span class="dv">9</span>) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(test_text) )
+    
+    pos_y &lt;-<span class="st"> </span>first_line_pos_y
+    
+    <span class="cf">if</span> (<span class="kw">length</span>(test_text[[i]]) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) {
+      
+      next_paragraph_pos_y &lt;-
+<span class="st">        </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>test_spacing_paragraph <span class="op">*</span><span class="st"> </span>( i <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(test_text) )
+      
+      <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>((test_text[[i]])))
+      {
+        pos_y &lt;-
+<span class="st">          </span><span class="kw">c</span>(pos_y,
+            first_line_pos_y <span class="op">-</span><span class="st"> </span>test_spacing_line <span class="op">*</span><span class="st"> </span>
+<span class="st">              </span>((j <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>(<span class="kw">length</span>((test_text[[i]])))) <span class="op">*</span><span class="st"> </span>
+<span class="st">              </span>(first_line_pos_y <span class="op">-</span><span class="st"> </span>next_paragraph_pos_y)
+          )
+      }
+    }
+    <span class="co"># display a paragraph (a element of the list)</span>
+    <span class="kw">text</span>(<span class="dv">0</span>, pos_y, <span class="dt">labels =</span> test_text[[i]], <span class="dt">cex =</span> <span class="fl">0.8</span>, <span class="dt">pos =</span> <span class="dv">4</span>)
+  }
+}
+
+<span class="kw">displayTestText</span>(prot1_tests<span class="op">$</span><span class="kw">text</span>(prot1_tests))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="288" /></p>
+<p>A rule-of-thumb for interpreting PERMANOVA and PERMDISP2 results is: if both p-values are low enough (e.g. &lt; 0.05), the classification given is a good approximation of the data.</p>
 
 </div>
             </section>
@@ -212,8 +245,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-2-simplify-coda-names.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-4-biplot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

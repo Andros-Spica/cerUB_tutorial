@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-2-read-data.html">
+<link rel="next" href="2-4-clean-and-format-data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,83 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
-
+<div id="codify-petrographical-variables" class="section level2">
+<h2><span class="header-section-number">2.3</span> Codify petrographical variables</h2>
+<p>Create a two-column data frame containing the original names of petrographic variables and their respective codes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">varCode &lt;-<span class="st"> </span><span class="kw">code_variables</span>(amphorae)</code></pre></div>
+<p>Petrographic variables must be named following <em>cerUB</em> naming system. Consult the documentation on the “amphorae” dataset by running:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?amphorae</code></pre></div>
+<p>The result of the <strong>code_variables</strong> function is used in the <strong>apply_ordination</strong> function for protocols “2a”, “2b”, “3”, and “4” (i.e., whenever there are ordinal input variables). The data frame containing the codification (‘varCode’) is attached as “ordination_object$variable_tags” to the resulting ordination object.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable name</th>
+<th align="left">Variable code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Site_Name</td>
+<td align="left">Site_Name</td>
+</tr>
+<tr class="even">
+<td align="left">LOCATION_SITE_INITIALS</td>
+<td align="left">LOCATION_SITE_INITIALS</td>
+</tr>
+<tr class="odd">
+<td align="left">CHARAC</td>
+<td align="left">CHARAC</td>
+</tr>
+<tr class="even">
+<td align="left">FabricGroup</td>
+<td align="left">FabricGroup</td>
+</tr>
+<tr class="odd">
+<td align="left">ChemReferenceGroup</td>
+<td align="left">ChemReferenceGroup</td>
+</tr>
+<tr class="even">
+<td align="left">INCLUS_DISTRIB</td>
+<td align="left">I1</td>
+</tr>
+<tr class="odd">
+<td align="left">INCLUS_ORIENT</td>
+<td align="left">I2</td>
+</tr>
+<tr class="even">
+<td align="left">TEMP</td>
+<td align="left">F1</td>
+</tr>
+<tr class="odd">
+<td align="left">ATM</td>
+<td align="left">F2</td>
+</tr>
+<tr class="even">
+<td align="left">POST_ATM</td>
+<td align="left">F3</td>
+</tr>
+<tr class="odd">
+<td align="left">VOID_OVERALL</td>
+<td align="left">V1</td>
+</tr>
+<tr class="even">
+<td align="left">VOID_VESIC_MEGA</td>
+<td align="left">V2</td>
+</tr>
+<tr class="odd">
+<td align="left">…</td>
+<td align="left">…</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-2-read-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-4-clean-and-format-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

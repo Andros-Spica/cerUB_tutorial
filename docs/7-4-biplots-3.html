@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="7-3-test-the-given-provenance-groups-2.html">
+<link rel="next" href="8-biplots.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,81 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
+<div id="biplots-3" class="section level2">
+<h2><span class="header-section-number">7.4</span> Biplots</h2>
+<p>The details on how to create biplots is already explained in <a href="3-4-biplot.html#biplot">protocol 1</a>. Protocol 4 generates PCoA projections.</p>
+<div id="biplot-2d-4" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Biplot 2D</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arrows_label_adj &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">0</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">0</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">0</span>),
+                          <span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),<span class="kw">c</span>(.<span class="dv">8</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,.<span class="dv">5</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">1</span>,.<span class="dv">2</span>),
+                          <span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),<span class="kw">c</span>(.<span class="dv">2</span>,.<span class="dv">7</span>))
+<span class="kw">row.names</span>(arrows_label_adj) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;S7&quot;</span>,<span class="st">&quot;S8&quot;</span>,<span class="st">&quot;S4&quot;</span>,<span class="st">&quot;CaO&quot;</span>,<span class="st">&quot;MgO&quot;</span>,
+                                 <span class="st">&quot;S11&quot;</span>,<span class="st">&quot;L48&quot;</span>,<span class="st">&quot;SiO2&quot;</span>,<span class="st">&quot;Ce&quot;</span>,<span class="st">&quot;Nb&quot;</span>,
+                                 <span class="st">&quot;Th&quot;</span>,<span class="st">&quot;TiO2&quot;</span>)
+
+biplot2d3d<span class="op">::</span><span class="kw">biplot_2d</span>(prot4_Shipwreck_2d,
+                      <span class="dt">ordination_method =</span> <span class="st">&quot;PCoA&quot;</span>,
+                      <span class="dt">invert_coordinates =</span> <span class="kw">c</span> (<span class="ot">TRUE</span>,<span class="ot">TRUE</span>),
+                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">3</span>,.<span class="dv">25</span>),
+                      <span class="dt">point_type =</span> <span class="st">&quot;point&quot;</span>,
+                      <span class="dt">groups =</span> factor_list_Shipwreck<span class="op">$</span>ProvGroup,
+                      <span class="dt">group_color =</span> color_list_Shipwreck<span class="op">$</span>ProvGroup,
+                      <span class="dt">group_label_cex =</span> <span class="fl">0.6</span>,
+                      <span class="dt">arrow_mim_dist =</span> .<span class="dv">5</span>,
+                      <span class="dt">arrow_label_cex =</span> <span class="fl">0.6</span>,
+                      <span class="dt">arrow_fig =</span> <span class="kw">c</span>(.<span class="dv">6</span>,.<span class="dv">95</span>,<span class="dv">0</span>,.<span class="dv">35</span>),
+                      <span class="dt">arrow_label_adj_override =</span> arrows_label_adj,
+                      <span class="dt">subtitle =</span> prot4_Shipwreck_2d<span class="op">$</span>sub2D,
+                      <span class="dt">test_text =</span> 
+                        prot4_Shipwreck_tests<span class="op">$</span><span class="kw">text</span>(prot4_Shipwreck_tests),
+                      <span class="dt">test_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.62</span>, .<span class="dv">99</span>),
+                      <span class="dt">fitAnalysis_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">7</span>,.<span class="dv">05</span>,.<span class="dv">5</span>),
+                      <span class="dt">output_type =</span> <span class="st">&quot;preview&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-91"></span>
+<img src="_main_files/figure-html/unnamed-chunk-91-1.png" alt="protocol 4 with shipwrecks" width="432" />
+<p class="caption">
+Figure 7.1: protocol 4 with shipwrecks
+</p>
+</div>
 
 </div>
+<div id="biplot-3d-4" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Biplot 3D</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">biplot2d3d<span class="op">::</span><span class="kw">biplot_3d</span>(prot4_Shipwreck_3d,
+                      <span class="dt">ordination_method =</span> <span class="st">&quot;PCoA&quot;</span>,
+                      <span class="dt">point_type =</span> <span class="st">&quot;point&quot;</span>,
+                      <span class="dt">groups =</span> factor_list_Shipwreck<span class="op">$</span>FabricGroup,
+                      <span class="dt">group_color =</span> color_list_Shipwreck<span class="op">$</span>FabricGroup,
+                      <span class="dt">group_representation =</span> <span class="st">&quot;stars&quot;</span>,
+                      <span class="dt">star_centroid_radius =</span> <span class="dv">0</span>,
+                      <span class="dt">star_label_cex =</span> .<span class="dv">8</span>,
+                      <span class="dt">arrow_min_dist =</span> .<span class="dv">5</span>,
+                      <span class="dt">arrow_body_length =</span> .<span class="dv">025</span>,
+                      <span class="dt">subtitle =</span> prot4_Shipwreck_3d<span class="op">$</span>sub3D,
+                      <span class="dt">test_text =</span> 
+                        prot4_Shipwreck_tests<span class="op">$</span><span class="kw">text</span>(prot4_Shipwreck_tests),
+                      <span class="dt">test_cex =</span> <span class="fl">1.25</span>,
+                      <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.65</span>, .<span class="dv">99</span>),
+                      <span class="dt">view_zoom =</span> <span class="fl">0.9</span>)
+
+biplot2d3d<span class="op">::</span><span class="kw">animation</span>(<span class="dt">directory =</span> directories<span class="op">$</span>prot4_Shipwreck,
+                       <span class="dt">file_name =</span> <span class="st">&quot;Prot4_Shipwreck_Biplot3D&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="publication_appendices/Appendix_E_Animated_GIFs/E5_Prot4_Shipwreck_Biplot3D.gif" alt="Prot4_Shipwreck_Biplot3D.gif" />
+<p class="caption">Prot4_Shipwreck_Biplot3D.gif</p>
+</div>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="7-3-test-the-given-provenance-groups-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="8-biplots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

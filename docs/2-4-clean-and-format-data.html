@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-3-codify-petrographical-variables.html">
+<link rel="next" href="2-5-subsetting-criteria.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
-
+<div id="clean-and-format-data" class="section level2">
+<h2><span class="header-section-number">2.4</span> Clean and format data</h2>
+<p>Cleaning and format procedures, including coercing variables as numeric or factor, excluding columns (constants, perturbed, unreliable) and rows (incomplete data, outliers).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cleanAmphorae &lt;-<span class="st"> </span><span class="kw">clean_and_format</span>(
+  amphorae,
+  <span class="dt">completion_variable =</span> <span class="kw">c</span>(
+    <span class="co"># The variable with completion info</span>
+    <span class="st">&quot;CHARAC&quot;</span>, 
+    <span class="co"># the value indicating completion</span>
+    <span class="st">&quot;complete&quot;</span>
+  ), 
+  <span class="dt">categorical_columns =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">112</span>, 
+  <span class="dt">numerical_columns =</span> <span class="dv">113</span><span class="op">:</span><span class="kw">ncol</span>(amphorae),
+  <span class="co"># values converted to NA</span>
+  <span class="dt">as_na =</span> <span class="kw">c</span>(<span class="st">&quot;NULL&quot;</span>, <span class="st">&quot;indeterminate&quot;</span>, <span class="st">&quot;unfired&quot;</span>),
+  <span class="co"># method for replacing NAs</span>
+  <span class="dt">method =</span> <span class="ot">NULL</span>, 
+  <span class="co"># don&#39;t use the following variables</span>
+  <span class="dt">columns_to_exclude =</span> <span class="kw">c</span>(<span class="st">&quot;VOID_VESIC_MEGA&quot;</span>, <span class="st">&quot;VOID_VUGH_MEGA&quot;</span>,
+                         <span class="st">&quot;VOID_CHAN_MEGA&quot;</span>, <span class="st">&quot;VOID_PLAN_MEGA&quot;</span>,
+                         <span class="st">&quot;COAR_R_DAC_AND&quot;</span>, <span class="st">&quot;COAR_R_EVAP&quot;</span>,
+                         <span class="st">&quot;COAR_R_CONGBREC&quot;</span>, <span class="st">&quot;COAR_R_SERP&quot;</span>,
+                         <span class="st">&quot;COAR_C_SPL&quot;</span>, <span class="st">&quot;COAR_C_OPX&quot;</span>,
+                         <span class="st">&quot;COAR_C_OL&quot;</span>, <span class="st">&quot;COAR_C_SIL&quot;</span>,
+                         <span class="st">&quot;COAR_C_ST&quot;</span>, <span class="st">&quot;COAR_C_ZRN&quot;</span>,
+                         <span class="st">&quot;COAR_C_PY&quot;</span>, <span class="st">&quot;FINE_C_OPX&quot;</span>,
+                         <span class="st">&quot;FINE_C_ZRN&quot;</span>),
+  <span class="co"># don&#39;t use the following observations</span>
+  <span class="co"># (Italic amphorae from Port Vendres 4)</span>
+  <span class="dt">rows_to_exclude =</span> <span class="kw">c</span>(<span class="st">&quot;PV4033&quot;</span>, <span class="co"># PV4-IND4</span>
+                      <span class="st">&quot;PV4017&quot;</span>, <span class="co"># PV4-CAMP</span>
+                      <span class="co"># PV4-ITT</span>
+                      <span class="st">&quot;PV4021&quot;</span>, <span class="st">&quot;PV4023&quot;</span>, <span class="st">&quot;PV4024&quot;</span>, 
+                      <span class="st">&quot;PV4025&quot;</span>, <span class="st">&quot;PV4035&quot;</span>, <span class="st">&quot;PV4037&quot;</span>,
+                      <span class="co"># PV4-NAP</span>
+                      <span class="st">&quot;PV4022&quot;</span>, <span class="st">&quot;PV4026&quot;</span>, <span class="st">&quot;PV4027&quot;</span>, 
+                      <span class="st">&quot;PV4028&quot;</span>, <span class="st">&quot;PV4029&quot;</span>, <span class="st">&quot;PV4030&quot;</span>,
+                      <span class="st">&quot;PV4036&quot;</span>)
+)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">Variables</th>
+<th align="left">Observations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>amphorae</td>
+<td align="left">138</td>
+<td align="left">238</td>
+</tr>
+<tr class="even">
+<td>cleanAmphorae</td>
+<td align="left">91</td>
+<td align="left">223</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-3-codify-petrographical-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-5-subsetting-criteria.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

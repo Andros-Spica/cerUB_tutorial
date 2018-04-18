@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="1-install.html">
+<link rel="prev" href="2-5-subsetting-criteria.html">
+<link rel="next" href="2-7-helper-objects-for-plotting.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -182,38 +182,130 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="cerub-tutorial" class="section level1 unnumbered">
-<h1>cerUB tutorial</h1>
-<p>Tutorial showcasing the cerUB package for R (<a href="https://github.com/Andros-Spica/cerUB">cerUB</a>).</p>
-<p>This document shows how to use <em>cerUB</em> protocols to explore petrographic and compositional data. As an example, we provide the ‘amphorae’ dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).</p>
-<ol style="list-style-type: decimal">
-<li><a href="1-install.html#install">Installing cerUB</a></li>
-<li><a href="2-init.html#init">Initial procedures</a></li>
-<li><a href="3-prot1.html#prot1">Protocol 1 - Geochemical data</a></li>
-<li><a href="4-prot2.html#prot2">Protocol 2 - Petrographic data</a></li>
-<li><a href="5-prot3.html#prot3">Protocol 3 - Geochemical and petrographic data</a></li>
-<li><a href="6-prot4.html#prot4">Protocol 4 - Provenance data</a></li>
-<li><a href="7-prot4-ship.html#prot4_ship">Protocol 4 - Provenance data with shipwrecks</a></li>
-<li><a href="4-3-biplots.html#biplots">Appendix: Interpreting biplots</a></li>
-</ol>
-<hr />
-<p>All rmarkdown (.Rmd) source files are available in the <a href="https://github.com/Andros-Spica/cerUB_tutorial">repository</a>.</p>
-<p>There, the <a href="https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices">publication appendices</a> folder contains alternative versions of the appendices (supplementary materials) of the related article:</p>
-<blockquote>
-<p>Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. <em>Journal of Archaeological Science</em>, 93:150-165. <a href="https://doi.org/10.1016/j.jas.2018.03.007" class="uri">https://doi.org/10.1016/j.jas.2018.03.007</a></p>
-</blockquote>
-<p>Please, address any issues, suggestions, and comments to Andreas Angourakis (<a href="mailto:andros.spica@gmail.com">andros.spica@gmail.com</a>, or through <em>GitHub</em>, user <strong>Andros-Spica</strong>)</p>
-
+<div id="organizing-groups" class="section level2">
+<h2><span class="header-section-number">2.6</span> Organizing groups</h2>
+<p>Build lists of named group factors for easiness of reference.</p>
+<p>First, create a list aiming to define workshops productions, so no shipwrecks:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor_list &lt;-
+<span class="st">  </span><span class="kw">list</span>(
+    <span class="dt">Site =</span> <span class="kw">factor</span>(cleanAmphorae<span class="op">$</span>Site_Name[<span class="op">!</span>isShipwreck]),
+    <span class="dt">FabricGroup =</span> <span class="kw">factor</span>(cleanAmphorae<span class="op">$</span>FabricGroup[<span class="op">!</span>isShipwreck]),
+    <span class="dt">ChemGroup =</span> <span class="kw">factor</span>(cleanAmphorae<span class="op">$</span>ChemReferenceGroup[<span class="op">!</span>isShipwreck]),
+    <span class="dt">ProvGroup =</span> <span class="kw">factor</span>(ProvenanceGroup[<span class="op">!</span>isShipwreck])
+  )</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">Site</th>
+<th align="left">FabricGroup</th>
+<th align="left">ChemGroup</th>
+<th align="left">ProvGroup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ACM001</td>
+<td align="left">Ca L’Arnau-Can Pau Ferrer</td>
+<td align="left">ACM-2</td>
+<td align="left">ACM-C</td>
+<td align="left">ACM</td>
+</tr>
+<tr class="even">
+<td>ACM097</td>
+<td align="left">Ca L’Arnau-Can Pau Ferrer</td>
+<td align="left">ACM-1</td>
+<td align="left">ACM-A</td>
+<td align="left">ACM</td>
+</tr>
+<tr class="odd">
+<td>BIF006</td>
+<td align="left">BDN-Pompeu Fabra</td>
+<td align="left">BIF-1</td>
+<td align="left">BIF-2</td>
+<td align="left">BIF</td>
+</tr>
+<tr class="even">
+<td>BIF048</td>
+<td align="left">BDN-Pompeu Fabra</td>
+<td align="left">BIF-1</td>
+<td align="left">BIF-3</td>
+<td align="left">BIF</td>
+</tr>
+<tr class="odd">
+<td>CRC002</td>
+<td align="left">Cal Ros de les Cabres</td>
+<td align="left">CRC-1</td>
+<td align="left">CRC-1</td>
+<td align="left">CRC</td>
+</tr>
+<tr class="even">
+<td>ELV002</td>
+<td align="left">El Vilarenc</td>
+<td align="left">ELV-1</td>
+<td align="left">ELV-1</td>
+<td align="left">ELV</td>
+</tr>
+<tr class="odd">
+<td>ELV051</td>
+<td align="left">El Vilarenc</td>
+<td align="left">ELV-1</td>
+<td align="left">ELV-2</td>
+<td align="left">ELV</td>
+</tr>
+<tr class="even">
+<td>FEU009</td>
+<td align="left">Can Feu</td>
+<td align="left">FEU-IND1</td>
+<td align="left">FEU-IND1</td>
+<td align="left">FEU-IND1</td>
+</tr>
+<tr class="odd">
+<td>LLA010</td>
+<td align="left">Llafranc</td>
+<td align="left">LLA-1</td>
+<td align="left">LLA-A2</td>
+<td align="left">LLA</td>
+</tr>
+<tr class="even">
+<td>MOR018</td>
+<td align="left">El More</td>
+<td align="left">MOR-2</td>
+<td align="left">MOR-3</td>
+<td align="left">MOR</td>
+</tr>
+<tr class="odd">
+<td>SAL025</td>
+<td align="left">La Salut</td>
+<td align="left">SAL-2</td>
+<td align="left">SAL-1</td>
+<td align="left">SAL</td>
+</tr>
+<tr class="even">
+<td>SBL045</td>
+<td align="left">Sant Boi Historic Centre</td>
+<td align="left">SBL-2</td>
+<td align="left">SBL-2</td>
+<td align="left">SBL</td>
+</tr>
+</tbody>
+</table>
+<p>Then, create a second list, aiming to assign shipwreck observations to workshop productions, so with shipwreck samples but no true outliers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor_list_Shipwreck &lt;-
+<span class="st">  </span><span class="kw">list</span>(
+    <span class="dt">Site =</span> <span class="kw">factor</span>(cleanAmphorae<span class="op">$</span>Site_Name[<span class="op">!</span>isTrueIND]),
+    <span class="dt">FabricGroup =</span> <span class="kw">factor</span>(cleanAmphorae<span class="op">$</span>FabricGroup[<span class="op">!</span>isTrueIND]),
+    <span class="dt">ChemGroup =</span> <span class="kw">factor</span>(cleanAmphorae<span class="op">$</span>ChemReferenceGroup[<span class="op">!</span>isTrueIND]),
+    <span class="dt">ProvGroup =</span> <span class="kw">factor</span>(ProvenanceGroup[<span class="op">!</span>isTrueIND])
+  )</code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="1-install.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-5-subsetting-criteria.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-7-helper-objects-for-plotting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
