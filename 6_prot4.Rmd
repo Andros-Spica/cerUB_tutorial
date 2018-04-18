@@ -1,5 +1,7 @@
 ---
+site: "bookdown::bookdown_site"
 output:
+  bookdown::gitbook: default
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -178,7 +180,7 @@ chemVars16 <- c("Fe2O3","Al2O3","TiO2","MgO","CaO","SiO2",
 
 ```
 
-# Protocol 4 - Provenance data
+# Protocol 4 - Provenance data {#prot4}
 
 The following example applies protocol 4 to confirm workshops' provenance groups.
 
@@ -313,4 +315,3 @@ biplot2d3d::animation(directory = directories$prot4,
 
 ![Prot4_Biplot3D.gif](publication_appendices/Appendix_E_Animated_GIFs/E4_Prot4_Biplot3D.gif)
 
-[Back to index](Main_Using_cerUB.html)

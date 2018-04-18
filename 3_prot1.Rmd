@@ -1,5 +1,7 @@
 ---
+site: "bookdown::bookdown_site"
 output:
+  bookdown::gitbook: default
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -178,7 +180,7 @@ chemVars16 <- c("Fe2O3","Al2O3","TiO2","MgO","CaO","SiO2",
 
 ```
 
-# Protocol 1 - Geochemical data
+# Protocol 1 - Geochemical data {#prot1}
 
 The following example applies protocol 1 to confirm the workshops' chemical reference groups.
 
@@ -555,4 +557,3 @@ biplot2d3d::biplot_2d(prot1_CLR,
                       output_type = "preview")
 ```
 
-[Back to index](Main_Using_cerUB.html)

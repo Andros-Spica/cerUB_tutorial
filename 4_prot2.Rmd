@@ -1,5 +1,7 @@
 ---
+site: "bookdown::bookdown_site"
 output:
+  bookdown::gitbook: default
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -178,7 +180,7 @@ chemVars16 <- c("Fe2O3","Al2O3","TiO2","MgO","CaO","SiO2",
 
 ```
 
-# Protocol 2 - Petrographic data
+# Protocol 2 - Petrographic data {#prot2}
 
 The following example applies protocol 2 to confirm workshops' petrographic groups.
 
@@ -382,4 +384,3 @@ biplot2d3d::animation(directory = directories$prot2,
 
 ![Prot2b_Biplot3D_snapshot.png](publication_appendices/Appendix_E_Animated_GIFs/E2_Prot2b_Biplot3D.gif)
 
-[Back to index](Main_Using_cerUB.html)

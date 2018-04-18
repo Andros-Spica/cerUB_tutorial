@@ -1,5 +1,7 @@
 ---
+site: "bookdown::bookdown_site"
 output:
+  bookdown::gitbook: default
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -180,7 +182,7 @@ chemVars16 <- c("Fe2O3","Al2O3","TiO2","MgO","CaO","SiO2",
 ```
 
 
-# Interpreting biplots
+# Interpreting biplots {#biplots}
 
 This section is a reminder of the possible caveats of interpreting multivariate projections (biplots) as bivariate plots (e.g., scatter plots).
 
@@ -425,4 +427,3 @@ biplot2d3d::biplot_2d(prot2a_2d,
 
 Biplots and ordinal methods (PCA, PCoA, CA, etc.) are exploratory tools that play a game of compromise in order to define the best projections given the whole variance in a dataset. Do not expect them to display patterns that are clear when looking into specific variables. For that kind of analysis, you should use bivariate statistics and graphical displays, such as scatter plots or box plots.
 
-[Back to index](Main_Using_cerUB.html)

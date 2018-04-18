@@ -1,5 +1,7 @@
 ---
+site: "bookdown::bookdown_site"
 output:
+  bookdown::gitbook: default
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -404,5 +406,3 @@ However, before jumping into using more complex techniques, we do recommend a de
 to CoDa:
 
 > Pawlowsky-Glahn, V., Buccianti, A., 2011. Compositional data analysis: theory and applications. Wiley.
-
-[Back to index](Main_Using_cerUB.html)

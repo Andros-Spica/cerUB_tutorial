@@ -1,5 +1,7 @@
 ---
+site: "bookdown::bookdown_site"
 output:
+  bookdown::gitbook: default
   html_document:
     fig_caption: yes
     fig_height: 7
@@ -178,7 +180,7 @@ chemVars16 <- c("Fe2O3","Al2O3","TiO2","MgO","CaO","SiO2",
 
 ```
 
-# Protocol 4 - Provenance data with shipwrecks
+# Protocol 4 - Provenance data with shipwrecks {#prot4_ship}
 
 The following example applies protocol 4 to confirm shipwrecks samples attribution to workshops' provenance groups.
 
@@ -303,4 +305,3 @@ biplot2d3d::animation(directory = directories$prot4_Shipwreck,
 
 ![Prot4_Shipwreck_Biplot3D.gif](publication_appendices/Appendix_E_Animated_GIFs/E5_Prot4_Shipwreck_Biplot3D.gif)
 
-[Back to index](Main_Using_cerUB.html)

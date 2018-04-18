@@ -1,15 +1,31 @@
 ---
-output: html_document
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook: default
+  html_document: defaulf
 ---
 
-# cerUB tutorial
+# cerUB tutorial {-}
 
 Tutorial showcasing the cerUB package for R ([cerUB](https://github.com/Andros-Spica/cerUB)).
 
-Click [here](Main_Using_cerUB.html) to follow the tutorial. All rmarkdown (.Rmd) source files  are available in the [repository](https://github.com/Andros-Spica/cerUB_tutorial).
+This document shows how to use *cerUB* protocols to explore petrographic and compositional data. As an example, we provide the 'amphorae' dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain. It is a live version of the Appendix C of an article published in Journal of Archaeological Science (see reference below).
+
+1. [Installing cerUB]{#install}
+2. [Initial procedures]{#init}
+3. [Protocol 1 - Geochemical data]{#prot1}
+4. [Protocol 2 - Petrographic data]{#prot2}
+5. [Protocol 3 - Geochemical and petrographic data]{#prot3}
+6. [Protocol 4 - Provenance data]{#prot4}
+7. [Protocol 4 - Provenance data with shipwrecks]{#prot4_ship}
+8. [Appendix: Interpreting biplots]{#biplots}
+
+---
+
+All rmarkdown (.Rmd) source files are available in the [repository](https://github.com/Andros-Spica/cerUB_tutorial).
 
 There, the [publication appendices](https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices) folder contains alternative versions of the appendices (supplementary materials) of the related article:
 
-> Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
+> Angourakis, A., Marti&#769;nez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
 
 Please, address any issues, suggestions, and comments to Andreas Angourakis (andros.spica@gmail.com, or through *GitHub*, user **Andros-Spica**)
