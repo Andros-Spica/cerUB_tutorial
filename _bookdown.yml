@@ -1,0 +1,29 @@
+site: "bookdown::bookdown_site"
+url: 'https\://andros-spica.github.io/cerUB_tutorial/Main_Using_cerUB.html'
+github-repo: "Andros-Spica/cerUB_tutorial"
+output:
+  bookdown::gitbook:
+  config:
+    toc:
+      collapse: subsection
+      scroll_highlight: yes
+      before: null
+      after: null
+    toolbar:
+      position: fixed
+    edit : no
+    download: no
+    search: yes
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+    sharing:
+      facebook: yes
+      twitter: yes
+      google: no
+      linkedin: no
+      weibo: no
+      instapper: no
+      vk: no
+      all: ['facebook', 'google', 'twitter', 'linkedin', 'weibo', 'instapaper']
