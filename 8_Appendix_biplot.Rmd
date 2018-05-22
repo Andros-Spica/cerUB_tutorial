@@ -161,7 +161,7 @@ chemVars16 <- c("Fe2O3","Al2O3","TiO2","MgO","CaO","SiO2",
 ```
 
 
-# Interpreting biplots {#biplots}
+# Interpreting biplots {#interp_biplots}
 
 This section is a reminder of the possible caveats of interpreting multivariate projections (biplots) as bivariate plots (e.g., scatter plots).
 

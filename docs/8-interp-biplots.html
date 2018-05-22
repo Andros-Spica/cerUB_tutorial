@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="generator" content="bookdown 0.7.8 and GitBook 2.6.7">
+
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="7-4-biplots-3.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.0/htmlwidgets.js"></script>
+<link href="libs/rglwidgetClass-2/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-2/rglClass.src.js"></script>
+<script src="libs/CanvasMatrix4-2016/CanvasMatrix.src.js"></script>
+<script src="libs/rglWebGL-binding-0.99.9/rglWebGL.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>cerUB tutorial</a></li>
+<li class="chapter" data-level="1" data-path="1-install.html"><a href="1-install.html"><i class="fa fa-check"></i><b>1</b> Installing cerUB</a></li>
+<li class="chapter" data-level="2" data-path="2-init.html"><a href="2-init.html"><i class="fa fa-check"></i><b>2</b> Initial procedures</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-set-directories-for-saving-data.html"><a href="2-1-set-directories-for-saving-data.html"><i class="fa fa-check"></i><b>2.1</b> Set directories for saving data</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-read-data.html"><a href="2-2-read-data.html"><i class="fa fa-check"></i><b>2.2</b> Read data</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-codify-petrographical-variables.html"><a href="2-3-codify-petrographical-variables.html"><i class="fa fa-check"></i><b>2.3</b> Codify petrographical variables</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-clean-and-format-data.html"><a href="2-4-clean-and-format-data.html"><i class="fa fa-check"></i><b>2.4</b> Clean and format data</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-subsetting-criteria.html"><a href="2-5-subsetting-criteria.html"><i class="fa fa-check"></i><b>2.5</b> Subsetting criteria</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-organizing-groups.html"><a href="2-6-organizing-groups.html"><i class="fa fa-check"></i><b>2.6</b> Organizing groups</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-helper-objects-for-plotting.html"><a href="2-7-helper-objects-for-plotting.html"><i class="fa fa-check"></i><b>2.7</b> Helper objects for plotting</a></li>
+<li class="chapter" data-level="2.8" data-path="2-8-enunciate-exception-columns.html"><a href="2-8-enunciate-exception-columns.html"><i class="fa fa-check"></i><b>2.8</b> Enunciate exception columns</a></li>
+<li class="chapter" data-level="2.9" data-path="2-9-choose-geochemical-data.html"><a href="2-9-choose-geochemical-data.html"><i class="fa fa-check"></i><b>2.9</b> Choose geochemical data</a></li>
+<li class="chapter" data-level="2.10" data-path="2-10-save-transformed-geochemical-data-to-file-optional.html"><a href="2-10-save-transformed-geochemical-data-to-file-optional.html"><i class="fa fa-check"></i><b>2.10</b> Save transformed geochemical data to file (optional)</a></li>
+<li class="chapter" data-level="2.11" data-path="2-11-other-coda-packages.html"><a href="2-11-other-coda-packages.html"><i class="fa fa-check"></i><b>2.11</b> Other CoDa packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-prot1.html"><a href="3-prot1.html"><i class="fa fa-check"></i><b>3</b> Protocol 1 - Geochemical data</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-ordination-procedure.html"><a href="3-1-ordination-procedure.html"><i class="fa fa-check"></i><b>3.1</b> Ordination procedure</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-simplify-coda-names.html"><a href="3-2-simplify-coda-names.html"><i class="fa fa-check"></i><b>3.2</b> Simplify CoDa names</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-test-the-given-chemical-reference-groups.html"><a href="3-3-test-the-given-chemical-reference-groups.html"><i class="fa fa-check"></i><b>3.3</b> Test the given chemical reference groups</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-biplot.html"><a href="3-4-biplot.html"><i class="fa fa-check"></i><b>3.4</b> Biplots</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-biplot.html"><a href="3-4-biplot.html#biplot-2d"><i class="fa fa-check"></i><b>3.4.1</b> Biplot 2D</a></li>
+<li class="chapter" data-level="3.4.2" data-path="3-4-biplot.html"><a href="3-4-biplot.html#biplot-3d"><i class="fa fa-check"></i><b>3.4.2</b> Biplot 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="3-5-comparing-coda-transformations.html"><a href="3-5-comparing-coda-transformations.html"><i class="fa fa-check"></i><b>3.5</b> Comparing CoDa transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-prot2.html"><a href="4-prot2.html"><i class="fa fa-check"></i><b>4</b> Protocol 2 - Petrographic data</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-ordination-procedure-1.html"><a href="4-1-ordination-procedure-1.html"><i class="fa fa-check"></i><b>4.1</b> Ordination procedure</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-test-the-given-fabric-groups.html"><a href="4-2-test-the-given-fabric-groups.html"><i class="fa fa-check"></i><b>4.2</b> Test the given fabric groups</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-biplots.html"><a href="4-3-biplots.html"><i class="fa fa-check"></i><b>4.3</b> Biplots</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-biplots.html"><a href="4-3-biplots.html#biplot-2d-1"><i class="fa fa-check"></i><b>4.3.1</b> Biplot 2D</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-biplots.html"><a href="4-3-biplots.html#biplot-3d-1"><i class="fa fa-check"></i><b>4.3.2</b> Biplot 3D</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-prot3.html"><a href="5-prot3.html"><i class="fa fa-check"></i><b>5</b> Protocol 3 - Geochemical and petrographic data</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-ordination-procedure-2.html"><a href="5-1-ordination-procedure-2.html"><i class="fa fa-check"></i><b>5.1</b> Ordination procedure</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-simplify-coda-names-1.html"><a href="5-2-simplify-coda-names-1.html"><i class="fa fa-check"></i><b>5.2</b> Simplify CoDa names</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-test-the-given-provenance-groups.html"><a href="5-3-test-the-given-provenance-groups.html"><i class="fa fa-check"></i><b>5.3</b> Test the given provenance groups</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-biplots-1.html"><a href="5-4-biplots-1.html"><i class="fa fa-check"></i><b>5.4</b> Biplots</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="5-4-biplots-1.html"><a href="5-4-biplots-1.html#biplot-2d-2"><i class="fa fa-check"></i><b>5.4.1</b> Biplot 2D</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5-4-biplots-1.html"><a href="5-4-biplots-1.html#biplot-3d-2"><i class="fa fa-check"></i><b>5.4.2</b> Biplot 3D</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-prot4.html"><a href="6-prot4.html"><i class="fa fa-check"></i><b>6</b> Protocol 4 - Provenance data</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-ordination-procedure-3.html"><a href="6-1-ordination-procedure-3.html"><i class="fa fa-check"></i><b>6.1</b> Ordination procedure</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-simplify-coda-names-2.html"><a href="6-2-simplify-coda-names-2.html"><i class="fa fa-check"></i><b>6.2</b> Simplify CoDa names</a></li>
+<li class="chapter" data-level="6.3" data-path="6-3-test-the-given-provenance-groups-1.html"><a href="6-3-test-the-given-provenance-groups-1.html"><i class="fa fa-check"></i><b>6.3</b> Test the given provenance groups</a></li>
+<li class="chapter" data-level="6.4" data-path="6-4-biplots-2.html"><a href="6-4-biplots-2.html"><i class="fa fa-check"></i><b>6.4</b> Biplots</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="6-4-biplots-2.html"><a href="6-4-biplots-2.html#biplot-2d-3"><i class="fa fa-check"></i><b>6.4.1</b> Biplot 2D</a></li>
+<li class="chapter" data-level="6.4.2" data-path="6-4-biplots-2.html"><a href="6-4-biplots-2.html#biplot-3d-3"><i class="fa fa-check"></i><b>6.4.2</b> Biplot 3D</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-prot4-ship.html"><a href="7-prot4-ship.html"><i class="fa fa-check"></i><b>7</b> Protocol 4 - Provenance data with shipwrecks</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-ordination-procedure-4.html"><a href="7-1-ordination-procedure-4.html"><i class="fa fa-check"></i><b>7.1</b> Ordination procedure</a></li>
+<li class="chapter" data-level="7.2" data-path="7-2-simplify-coda-names-3.html"><a href="7-2-simplify-coda-names-3.html"><i class="fa fa-check"></i><b>7.2</b> Simplify CoDa names</a></li>
+<li class="chapter" data-level="7.3" data-path="7-3-test-the-given-provenance-groups-2.html"><a href="7-3-test-the-given-provenance-groups-2.html"><i class="fa fa-check"></i><b>7.3</b> Test the given provenance groups</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-biplots-3.html"><a href="7-4-biplots-3.html"><i class="fa fa-check"></i><b>7.4</b> Biplots</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-biplots-3.html"><a href="7-4-biplots-3.html#biplot-2d-4"><i class="fa fa-check"></i><b>7.4.1</b> Biplot 2D</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-biplots-3.html"><a href="7-4-biplots-3.html#biplot-3d-4"><i class="fa fa-check"></i><b>7.4.2</b> Biplot 3D</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-interp-biplots.html"><a href="8-interp-biplots.html"><i class="fa fa-check"></i><b>8</b> Interpreting biplots</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="interp_biplots" class="section level1">
+<h1><span class="header-section-number">8</span> Interpreting biplots</h1>
+<p>This section is a reminder of the possible caveats of interpreting multivariate projections (biplots) as bivariate plots (e.g., scatter plots).</p>
+<p>The first big difference between biplots and scatter plots lies in their names. Contrary to common intuition, ‘bi’ in ‘biplot’ does not stand for two <strong>axes</strong> or <strong>dimensions</strong> but the two <em><strong>plots</strong></em> that share the same axes or dimensions. Graphically, those plots consist of points, which is analogous to a scatterplot, and arrows, which represent the covariance between variables and the dimensions of the plot. As these dimensions are given by an ordination method (e.g., PCA), they express the fact that the dataset itself has two dimensions (a matrix with rows and columns). Consequently, three-dimensional biplots are still biplots, not ‘triplots’.</p>
+<p>There is another, more subtle, difference between biplots and scatter plots. The latter will unequivocally place points according to their values in each of the variables considered. Biplots, in turn, are projections of distributions or ‘point clouds’ that are multidimensional (i.e., multivariate data). Even in the best scenarios, biplots cannot represent such clouds in their full form. Imagine trying to draw a dice on a sheet of paper.</p>
+<p>As an example, consider the outcome of <a href="3-prot1.html#prot1">protocol 1</a>. In this case, robust PCA generated a good 2D projection (around 78% of variance) where CaO and MgO are the major contributors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Recover protocol 1 override for variable label positions </span>
+arrows_label_adj &lt;-<span class="st"> </span><span class="kw">rbind</span>( <span class="kw">c</span>(.<span class="dv">5</span>, <span class="op">-</span>.<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">1</span>, .<span class="dv">5</span>), <span class="kw">c</span>(<span class="fl">1.2</span>, <span class="fl">1.2</span>), 
+                           <span class="kw">c</span>(<span class="fl">1.2</span>, .<span class="dv">4</span>), <span class="kw">c</span>(.<span class="dv">8</span>, .<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), 
+                           <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>, <span class="dv">1</span>), <span class="kw">c</span>(.<span class="dv">5</span>, <span class="fl">1.2</span>), <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">5</span>, .<span class="dv">5</span>),
+                           <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">2</span>, .<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))
+<span class="kw">row.names</span>(arrows_label_adj) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fe2O3&quot;</span>, <span class="st">&quot;Al2O3&quot;</span>, <span class="st">&quot;SiO2&quot;</span>, 
+                                 <span class="st">&quot;TiO2&quot;</span>, <span class="st">&quot;MgO&quot;</span>, <span class="st">&quot;Th&quot;</span>, 
+                                 <span class="st">&quot;Nb&quot;</span>, <span class="st">&quot;Cr&quot;</span>, <span class="st">&quot;Ce&quot;</span>,
+                                 <span class="st">&quot;Ga&quot;</span>, <span class="st">&quot;Zn&quot;</span>, <span class="st">&quot;Y&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biplot_2d</span>(prot1, 
+          <span class="dt">groups =</span> factor_list<span class="op">$</span>ChemGroup, 
+          <span class="dt">group_color =</span> color_list<span class="op">$</span>ChemGroup,
+          <span class="dt">group_label_cex =</span> <span class="fl">0.6</span>,
+          <span class="dt">invert_coordinates =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>),
+          <span class="dt">arrow_label_cex =</span> <span class="fl">0.7</span>,
+          <span class="dt">test_text =</span> prot1_tests<span class="op">$</span><span class="kw">text</span>(prot1_tests),
+          <span class="dt">test_cex =</span> <span class="fl">0.8</span>,
+          <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.65</span>, .<span class="dv">99</span>),
+          <span class="dt">output_type =</span> <span class="st">&quot;preview&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-97"></span>
+<img src="_main_files/figure-html/unnamed-chunk-97-1.png" alt="Protocol 1, representing and testing chemical reference groups" width="432" />
+<p class="caption">
+Figure 8.1: Protocol 1, representing and testing chemical reference groups
+</p>
+</div>
+
+<p>Therefore, we can safely interpret positions in terms of having more or less CaO and MgO. For instance, we can classify observations by levels of CaO content and test it against protocol 1 distance matrix and 2D projection:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create factor variable containing the classification (5 categories)</span>
+CaO_level &lt;-<span class="st"> </span><span class="kw">cut</span>(cleanAmphorae<span class="op">$</span>CaO[<span class="op">!</span>isShipwreck], <span class="dv">5</span>)
+
+<span class="co"># Select 5 colours from the &#39;topo.colors&#39; palette</span>
+CaO_level_colors &lt;-<span class="st"> </span><span class="kw">topo.colors</span>(<span class="kw">nlevels</span>(CaO_level))
+
+<span class="co"># Test the classification</span>
+prot1_tests_CaO &lt;-<span class="st"> </span><span class="kw">test_groups</span>(prot1<span class="op">$</span>dist_matrix, CaO_level)
+<span class="co">#&gt; [1] &quot;initiating test batch...&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::anosim done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::betadisper done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::permutest done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::adonis done.&quot;</span>
+<span class="co">#&gt; [1] &quot;Test batch completed.&quot;</span></code></pre></div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This is for highlighting CaO arrow</span>
+arrow_colors &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="kw">nrow</span>(prot1<span class="op">$</span>loadings))
+arrow_colors[<span class="kw">row.names</span>(prot1<span class="op">$</span>loadings) <span class="op">==</span><span class="st"> &quot;CaO&quot;</span>] &lt;-<span class="st"> &quot;red&quot;</span>
+
+<span class="kw">biplot_2d</span>(prot1, 
+          <span class="dt">groups =</span> CaO_level,
+          <span class="dt">group_color =</span> CaO_level_colors,
+          <span class="dt">group_star_cex =</span> <span class="dv">0</span>,
+          <span class="dt">group_label_cex =</span> <span class="dv">0</span>,
+          <span class="dt">show_group_legend =</span> <span class="ot">TRUE</span>,
+          <span class="dt">group_legend_title =</span> <span class="st">&quot;CaO&quot;</span>,
+          <span class="dt">group_legend_title_pos =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.9</span>),
+          <span class="dt">group_legend_text_cex =</span> <span class="fl">0.8</span>,
+          <span class="dt">group_legend_fig =</span> <span class="kw">c</span>(<span class="fl">0.7</span>,<span class="fl">0.99</span>,<span class="fl">0.68</span>,<span class="fl">0.95</span>),
+          <span class="dt">invert_coordinates =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>),
+          <span class="dt">arrow_label_cex =</span> <span class="fl">0.8</span>,
+          <span class="dt">arrow_fig =</span> <span class="kw">c</span>(.<span class="dv">6</span>,.<span class="dv">95</span>,<span class="dv">0</span>,.<span class="dv">35</span>),
+          <span class="dt">arrow_label_adj_override =</span> arrows_label_adj,
+          <span class="dt">arrow_color =</span> arrow_colors,
+          <span class="dt">test_text =</span> prot1_tests_CaO<span class="op">$</span><span class="kw">text</span>(prot1_tests_CaO),
+          <span class="dt">test_cex =</span> <span class="fl">0.8</span>,
+          <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.65</span>, .<span class="dv">99</span>),
+          <span class="dt">output_type =</span> <span class="st">&quot;preview&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-99"></span>
+<img src="_main_files/figure-html/unnamed-chunk-99-1.png" alt="Protocol 1, grouping by level of CaO content" width="432" />
+<p class="caption">
+Figure 8.2: Protocol 1, grouping by level of CaO content
+</p>
+</div>
+
+<p>However, interpretation is less straightforward when more than two variables contribute significantly to the total variation. Regarding biplots, such situation implies that a smaller portion of variation is represented, and that several variables are stretch on many directions over the two principal coordinates.</p>
+<p>For example, <a href="4-prot2.html#prot2">protocol 2</a> gave us a much worse 2D projection (55.7%) where fifteen variables are well represented.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Recover protocol 2a override for variable label positions </span>
+arrows_label_adj &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(.<span class="dv">5</span>,.<span class="dv">8</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">0</span>),<span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">1</span>),
+                          <span class="kw">c</span>(.<span class="dv">5</span>,<span class="dv">0</span>),<span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>))
+<span class="kw">row.names</span>(arrows_label_adj) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;L48&quot;</span>,<span class="st">&quot;L24&quot;</span>,<span class="st">&quot;L5&quot;</span>,<span class="st">&quot;L36&quot;</span>,<span class="st">&quot;S7&quot;</span>,
+                                 <span class="st">&quot;S8&quot;</span>,<span class="st">&quot;S11&quot;</span>)
+
+<span class="co"># This will help us select different arrow colours</span>
+isDisplayed &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">row.names</span>(prot2a_2d<span class="op">$</span>loadings) <span class="op">%in%</span><span class="st"> </span><span class="kw">row.names</span>(
+    <span class="kw">filter_arrows</span>(prot2a_2d<span class="op">$</span>loadings, <span class="dt">min_dist =</span> <span class="fl">0.5</span>))</code></pre></div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">biplot2d3d<span class="op">::</span><span class="kw">biplot_2d</span>(prot2a_2d,
+                      <span class="dt">ordination_method =</span> <span class="st">&quot;PCoA&quot;</span>,
+                      <span class="dt">invert_coordinates =</span> <span class="kw">c</span> (<span class="ot">TRUE</span>,<span class="ot">TRUE</span>),
+                      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">26</span>,.<span class="dv">35</span>),
+                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">31</span>,.<span class="dv">35</span>),
+                      <span class="dt">point_type =</span> <span class="st">&quot;point&quot;</span>,
+                      <span class="dt">groups =</span> factor_list<span class="op">$</span>FabricGroup,
+                      <span class="dt">group_color =</span> color_list<span class="op">$</span>FabricGroup,
+                      <span class="dt">group_label_cex =</span> <span class="fl">0.6</span>,
+                      <span class="dt">arrow_mim_dist =</span> <span class="fl">0.5</span>,
+                      <span class="dt">arrow_label_cex =</span> <span class="fl">0.6</span>,
+                      <span class="dt">arrow_fig =</span> <span class="kw">c</span>(.<span class="dv">6</span>,.<span class="dv">95</span>,<span class="dv">0</span>,.<span class="dv">35</span>),
+                      <span class="dt">arrow_label_adj_override =</span> arrows_label_adj,
+                      <span class="dt">subtitle =</span> prot2a_2d<span class="op">$</span>sub2D,
+                      <span class="dt">test_text =</span> prot2a_tests<span class="op">$</span><span class="kw">text</span>(prot2a_tests),
+                      <span class="dt">test_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.65</span>, .<span class="dv">99</span>),
+                      <span class="dt">fitAnalysis_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">7</span>,.<span class="dv">05</span>,.<span class="dv">5</span>),
+                      <span class="dt">output_type =</span> <span class="st">&quot;preview&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-102"></span>
+<img src="_main_files/figure-html/unnamed-chunk-102-1.png" alt="protocol 2a, representing and testing fabric groups" width="432" />
+<p class="caption">
+Figure 8.3: protocol 2a, representing and testing fabric groups
+</p>
+</div>
+
+<p>Like in protocol 1, we may want to interpret this projection in terms of a single variable. A obvious candidate is I2 since it is displayed long and quite isolated from other variables.</p>
+<p>In this case, I2 (or INCLUS_ORIENT) is already a factor variable (classification) with 3 categories (plus “none” as a missing value). Note that the selected dataset will have cases in only two of those categories.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># You may want to assure that the true </span>
+<span class="co"># categories are corectly represented:</span>
+cleanAmphorae &lt;-<span class="st"> </span><span class="kw">order_petro</span>(cleanAmphorae)
+
+<span class="kw">levels</span>(cleanAmphorae<span class="op">$</span>INCLUS_ORIENT[<span class="op">!</span>isShipwreck])
+<span class="co">#&gt; [1] &quot;unparallel&quot;        &quot;slightly parallel&quot; &quot;parallel&quot;         </span>
+<span class="co">#&gt; [4] &quot;none&quot;</span>
+
+<span class="co"># Declare this factor separately as an object for clearness</span>
+I2 &lt;-<span class="st"> </span>cleanAmphorae<span class="op">$</span>INCLUS_ORIENT[<span class="op">!</span>isShipwreck]
+
+<span class="co"># Select colours from the &#39;topo.colors&#39; palette</span>
+I2_colors &lt;-<span class="st"> </span><span class="kw">topo.colors</span>(<span class="kw">nlevels</span>(I2))
+
+<span class="co"># Test the classification</span>
+prot1_tests_I2 &lt;-<span class="st"> </span><span class="kw">test_groups</span>(prot2a_2d<span class="op">$</span>dist_matrix, I2)
+<span class="co">#&gt; [1] &quot;initiating test batch...&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::anosim done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::betadisper done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::permutest done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::adonis done.&quot;</span>
+<span class="co">#&gt; [1] &quot;Test batch completed.&quot;</span></code></pre></div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This is for highlighting I2 arrow</span>
+arrow_colors &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="kw">nrow</span>(prot2a_2d<span class="op">$</span>loadings))
+arrow_colors[<span class="kw">row.names</span>(prot2a_2d<span class="op">$</span>loadings) <span class="op">==</span><span class="st"> &quot;I2&quot;</span>] &lt;-<span class="st"> &quot;red&quot;</span>
+<span class="co"># filter arrows colours, since not all variables are displayed</span>
+arrow_colors &lt;-<span class="st"> </span>arrow_colors[isDisplayed]
+
+biplot2d3d<span class="op">::</span><span class="kw">biplot_2d</span>(prot2a_2d,
+                      <span class="dt">ordination_method =</span> <span class="st">&quot;PCoA&quot;</span>,
+                      <span class="dt">invert_coordinates =</span> <span class="kw">c</span> (<span class="ot">TRUE</span>,<span class="ot">TRUE</span>),
+                      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">26</span>,.<span class="dv">35</span>),
+                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">31</span>,.<span class="dv">35</span>),
+                      <span class="dt">groups =</span> I2,
+                      <span class="dt">group_color =</span> I2_colors,
+                      <span class="dt">group_star_cex =</span> <span class="dv">0</span>,
+                      <span class="dt">group_label_cex =</span> <span class="dv">0</span>,
+                      <span class="dt">show_group_legend =</span> <span class="ot">TRUE</span>,
+                      <span class="dt">group_legend_title =</span> <span class="st">&quot;INCLUS_ORIENT&quot;</span>,
+                      <span class="dt">group_legend_title_pos =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.9</span>),
+                      <span class="dt">group_legend_text_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">group_legend_fig =</span> <span class="kw">c</span>(<span class="fl">0.6</span>,<span class="fl">0.99</span>,<span class="fl">0.68</span>,<span class="fl">0.95</span>),
+                      <span class="dt">arrow_mim_dist =</span> .<span class="dv">5</span>,
+                      <span class="dt">arrow_label_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">arrow_fig =</span> <span class="kw">c</span>(.<span class="dv">6</span>,.<span class="dv">95</span>,<span class="dv">0</span>,.<span class="dv">35</span>),
+                      <span class="dt">arrow_label_adj_override =</span> arrows_label_adj,
+                      <span class="dt">arrow_color =</span> arrow_colors,
+                      <span class="dt">subtitle =</span> prot2a_2d<span class="op">$</span>sub2D,
+                      <span class="dt">test_text =</span> prot1_tests_I2<span class="op">$</span><span class="kw">text</span>(prot1_tests_I2),
+                      <span class="dt">test_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.65</span>, .<span class="dv">99</span>),
+                      <span class="dt">output_type =</span> <span class="st">&quot;preview&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-104"></span>
+<img src="_main_files/figure-html/unnamed-chunk-104-1.png" alt="Protocol 2a, grouping by INCLUS_ORIENT" width="432" />
+<p class="caption">
+Figure 8.4: Protocol 2a, grouping by INCLUS_ORIENT
+</p>
+</div>
+
+<p>This kind of reading becomes increasingly difficult when focusing in variables that are not so well aligned, such as L33 (or COAR_R_CHERT)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Declare this factor separately as an object for clearness</span>
+L33 &lt;-<span class="st"> </span>cleanAmphorae<span class="op">$</span>COAR_R_CHERT[<span class="op">!</span>isShipwreck]
+
+<span class="co"># Select colours from the &#39;topo.colors&#39; palette</span>
+L33_colors &lt;-<span class="st"> </span><span class="kw">topo.colors</span>(<span class="kw">nlevels</span>(L33))
+
+<span class="co"># Test the classification</span>
+prot1_tests_L33 &lt;-<span class="st"> </span><span class="kw">test_groups</span>(prot2a_2d<span class="op">$</span>dist_matrix, L33)
+<span class="co">#&gt; [1] &quot;initiating test batch...&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::anosim done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::betadisper done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::permutest done.&quot;</span>
+<span class="co">#&gt; [1] &quot;vegan::adonis done.&quot;</span>
+<span class="co">#&gt; [1] &quot;Test batch completed.&quot;</span></code></pre></div>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This is for highlighting L33 arrow</span>
+arrow_colors &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="kw">nrow</span>(prot2a_2d<span class="op">$</span>loadings))
+arrow_colors[<span class="kw">row.names</span>(prot2a_2d<span class="op">$</span>loadings) <span class="op">==</span><span class="st"> &quot;L33&quot;</span>] &lt;-<span class="st"> &quot;red&quot;</span>
+<span class="co"># filter arrows colours, since not all variables are displayed</span>
+arrow_colors &lt;-<span class="st"> </span>arrow_colors[isDisplayed]
+
+biplot2d3d<span class="op">::</span><span class="kw">biplot_2d</span>(prot2a_2d,
+                      <span class="dt">ordination_method =</span> <span class="st">&quot;PCoA&quot;</span>,
+                      <span class="dt">invert_coordinates =</span> <span class="kw">c</span> (<span class="ot">TRUE</span>,<span class="ot">TRUE</span>),
+                      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">26</span>,.<span class="dv">35</span>),
+                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">31</span>,.<span class="dv">35</span>),
+                      <span class="dt">groups =</span> L33,
+                      <span class="dt">group_color =</span> L33_colors,
+                      <span class="dt">group_star_cex =</span> <span class="dv">0</span>,
+                      <span class="dt">group_label_cex =</span> <span class="dv">0</span>,
+                      <span class="dt">show_group_legend =</span> <span class="ot">TRUE</span>,
+                      <span class="dt">group_legend_title =</span> <span class="st">&quot;COAR_R_CHERT&quot;</span>,
+                      <span class="dt">group_legend_title_pos =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.9</span>),
+                      <span class="dt">group_legend_text_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">group_legend_fig =</span> <span class="kw">c</span>(<span class="fl">0.6</span>,<span class="fl">0.99</span>,<span class="fl">0.68</span>,<span class="fl">0.95</span>),
+                      <span class="dt">arrow_mim_dist =</span> .<span class="dv">5</span>,
+                      <span class="dt">arrow_label_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">arrow_fig =</span> <span class="kw">c</span>(.<span class="dv">6</span>,.<span class="dv">95</span>,<span class="dv">0</span>,.<span class="dv">35</span>),
+                      <span class="dt">arrow_label_adj_override =</span> arrows_label_adj,
+                      <span class="dt">arrow_color =</span> arrow_colors,
+                      <span class="dt">subtitle =</span> prot2a_2d<span class="op">$</span>sub2D,
+                      <span class="dt">test_text =</span> prot1_tests_L33<span class="op">$</span><span class="kw">text</span>(prot1_tests_L33),
+                      <span class="dt">test_cex =</span> <span class="fl">0.8</span>,
+                      <span class="dt">test_fig =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.65</span>, .<span class="dv">99</span>),
+                      <span class="dt">output_type =</span> <span class="st">&quot;preview&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-106"></span>
+<img src="_main_files/figure-html/unnamed-chunk-106-1.png" alt="Protocol 2a, grouping by COAR_R_CHERT" width="432" />
+<p class="caption">
+Figure 8.5: Protocol 2a, grouping by COAR_R_CHERT
+</p>
+</div>
+<p>Biplots and ordinal methods (PCA, PCoA, CA, etc.) are exploratory tools that play a game of compromise in order to define the best projections given the whole variance in a dataset. Do not expect them to display patterns that are clear when looking into specific variables. For that kind of analysis, you should use bivariate statistics and graphical displays, such as scatter plots or box plots.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="7-4-biplots-3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

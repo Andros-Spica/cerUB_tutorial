@@ -12,7 +12,7 @@ This document shows how to use *cerUB* protocols to explore petrographic and com
 5. [Protocol 3 - Geochemical and petrographic data](#prot3)
 6. [Protocol 4 - Provenance data](#prot4)
 7. [Protocol 4 - Provenance data with shipwrecks](#prot4_ship)
-8. [Appendix: Interpreting biplots](#biplots)
+8. [Appendix: Interpreting biplots](#interp_biplots)
 
 ---
 
