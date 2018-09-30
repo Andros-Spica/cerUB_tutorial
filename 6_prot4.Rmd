@@ -187,14 +187,14 @@ prot4_2d <- apply_ordination(cleanAmphorae[!isShipwreck,],
                              exception_columns = excep_cols,
                              variable_tags = varCode,
                              coda_override = chemVars16,
-                             coda_transformation = "CLR")
+                             coda_transformation_method = "CLR")
 
 prot4_3d <- apply_ordination(cleanAmphorae[!isShipwreck,],
                              "4", # select protocol 4
                              exception_columns = excep_cols,
                              variable_tags = varCode,
                              coda_override = chemVars16,
-                             coda_transformation = "CLR",
+                             coda_transformation_method = "CLR",
                              dimensions = 3)
 ```
 

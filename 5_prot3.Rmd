@@ -189,7 +189,7 @@ prot3_2d <- apply_ordination(cleanAmphorae[!isShipwreck,], # no shipwrecks
                              exception_columns = excep_cols,
                              variable_tags = varCode,
                              coda_override = chemVars16,
-                             coda_transformation = "CLR")
+                             coda_transformation_method = "CLR")
 
 prot3_3d <- apply_ordination(cleanAmphorae[!isShipwreck,], # no shipwrecks
                              "3", # select protocol 3

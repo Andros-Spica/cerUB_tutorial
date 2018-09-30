@@ -182,7 +182,7 @@ NOTE: The [initial procedures](#init) must be ran at least once before any proto
 prot1 <- apply_ordination(cleanAmphorae[!isShipwreck,], # no shipwrecks
                           "1", # select protocol 1
                           coda_override = chemVars16,
-                          coda_transformation = "ILR")
+                          coda_transformation_method = "ILR")
 ```
 
 The outcome is an *ordination object*. In this case, it is the output of **pcaCoDa** function in *robCompositions* package, in addition to several extra information, such as the transformed data ('transformed_data'), the distance matrix ('dist_matrix'), and the ready-to-plot texts indicating the fitness of the 2D/3D projections respect the distance matrix ('sub2d', 'sub3d'). The later are printed in the console once the object is created.

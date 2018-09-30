@@ -188,7 +188,7 @@ prot4_Shipwreck_2d <- apply_ordination(# no true outliers
                                        exception_columns = excep_cols,
                                        variable_tags = varCode,
                                        coda_override = chemVars16,
-                                       coda_transformation = "CLR")
+                                       coda_transformation_method = "CLR")
 
 prot4_Shipwreck_3d <- apply_ordination(# no true outliers
                                        cleanAmphorae[!isTrueIND,],
@@ -196,7 +196,7 @@ prot4_Shipwreck_3d <- apply_ordination(# no true outliers
                                        exception_columns = excep_cols,
                                        variable_tags = varCode,
                                        coda_override = chemVars16,
-                                       coda_transformation = "CLR",
+                                       coda_transformation_method = "CLR",
                                        dimensions = 3)
 ```
 
