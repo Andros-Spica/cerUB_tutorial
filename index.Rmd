@@ -1,3 +1,27 @@
+---
+title: "Tutorial showcasing the cerUB package for R"
+authors: "Andreas Angourakis"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+description: "This document shows how to use *cerUB* protocols to explore petrographic and compositional data. As an example, we provide the 'amphorae' dataset concerning wine Roman amphorae from sites in Catalonia, NE Spain."
+url: 'https://andros-spica.github.io/cerUb_tutorial/'
+github-repo: Andros-Spica/cerUb_tutorial
+documentclass: book
+always_allow_html: yes
+urlcolor: blue
+fontsize: 12pt
+geometry: margin = 1.2in
+params:
+  ispdf: TRUE
+---
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+opts_chunk$set(collapse = TRUE, comment = "#>")
+library(png)
+library(grid)
+library(gridExtra)
+```
 
 # cerUB tutorial {-}
 
@@ -20,7 +44,7 @@ All rmarkdown (.Rmd) source files are available in the [repository](https://gith
 
 There, the [publication appendices](https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices) folder contains alternative versions of the appendices (supplementary materials) of the related article:
 
-> Angourakis, A., Marti&#769;nez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
+> Angourakis, A., Martínez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
 
 Additionaly, the repository also contains:
 - [Poster](https://github.com/Andros-Spica/cerUB_tutorial/blob/master/poster_ISA2018/ISA2018_Angourakis_et_al.pdf) presented in the International Symposium on Archaeometry (ISA) in Merida, Mexico, May 2018.

@@ -307,7 +307,7 @@ biplot_2d(prot1,
 
 \pagebreak
 
-The default setting detaches the variables projections (arrows) and places them as a miniature in the bottom-right corner. In this format they may still be interpreted, much like the North when reading a map. Remember though: the more longer arrows you see, the less each one of them is reliable when comparing point values. Here, we were 'lucky' for getting two nearly orthogonal variables (CaO and MgO), which means, for instance, that those observations in the top-left corner are surely more calcareous than those in the bottom-right. See the [Appendix section](8_Appendix_biplot.html) for more details.
+The default setting detaches the variables projections (arrows) and places them as a miniature in the bottom-right corner. In this format they may still be interpreted, much like the North when reading a map. Remember though: the more longer arrows you see, the less each one of them is reliable when comparing point values. Here, we were 'lucky' for getting two nearly orthogonal variables (CaO and MgO), which means, for instance, that those observations in the bottom-left corner are surely more calcareous than those in the top-right. See the [Appendix section](8_Appendix_biplot.html) for more details.
 
 If detaching the arrows is not of your preference, you can disable this:
 
@@ -439,7 +439,9 @@ You will need to install [ImageMagick](www.imagemagick.org) to be able to genera
 
 In these images, you get what you would see when running the biplot_3d function in a regular R session.
 
-![Prot1_Biplot3D.gif](publication_appendices/Appendix_E_Animated_GIFs/E1_Prot1_Biplot3D.gif)
+```{r Prot1Biplot3Danimation, eval=!params$ispdf, echo=FALSE, dependson='run.coevo.coeta-frames', fig.cap='Prot1_Biplot3D.gif'}
+knitr::include_graphics("publication_appendices/Appendix_E_Animated_GIFs/E1_Prot1_Biplot3D.gif")
+```
 
 NOTE: Animated GIF will not be displayed in the pdf version of this document.
 

@@ -1,39 +1,10 @@
----
-site: "bookdown::bookdown_site"
-output:
-  bookdown::gitbook: default
-  html_document:
-    fig_caption: yes
-    fig_height: 7
-    fig_width: 7
-    highlight: tango
-fontsize: 12pt
-geometry: margin = 1.2in
-header-includes:
-- \usepackage{placeins}
-- \usepackage{fancyhdr}
-- \usepackage{setspace}
-- \usepackage{chngcntr}
-- \usepackage{microtype}
-always_allow_html: yes
-urlcolor: blue
----
-
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
-library(knitr)
-opts_chunk$set(collapse = TRUE, comment = "#>")
-library(png)
-library(grid)
-library(gridExtra)
-```
-
 # Installing cerUB {#install}
 
 There are two options for installing the *cerUB* package:
 
 a. Downloading the latest release version from [Zenodo.org](zenodo.org) and installing it in [RStudio](rstudio.com) (Tools > Install Packages... > Install from: Package Archive File).
 
-> Angourakis, Andreas, & Marti&#769;nez Ferreras, Vero&#768;nica. (2017, September 23). cerUB - Protocols for exploring archaeometric data (R package). Zenodo. http://doi.org/10.5281/zenodo.975451
+> Angourakis, Andreas, & Martínez Ferreras, Verònica. (2017, September 23). cerUB - Protocols for exploring archaeometric data (R package). Zenodo. http://doi.org/10.5281/zenodo.975451
 
 b. Installing the latest development version directly from [GitHub](github.com) ([Andros-Spica/cerUB](https://github.com/Andros-Spica/cerUB)), using the *devtools* package:
 

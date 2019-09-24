@@ -293,5 +293,8 @@ biplot2d3d::animation(directory = directories$prot4,
                        file_name = "Prot4_Biplot3D")
 ```
 
-![Prot4_Biplot3D.gif](publication_appendices/Appendix_E_Animated_GIFs/E4_Prot4_Biplot3D.gif)
+```{r Prot4Biplot3Danimation, eval=!params$ispdf, echo=FALSE, dependson='run.coevo.coeta-frames', fig.cap='Prot4_Biplot3D.gif'}
+knitr::include_graphics("publication_appendices/Appendix_E_Animated_GIFs/E4_Prot4_Biplot3D.gif")
+```
 
+NOTE: Animated GIF will not be displayed in the pdf version of this document.

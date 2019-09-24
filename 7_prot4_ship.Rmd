@@ -283,5 +283,8 @@ biplot2d3d::animation(directory = directories$prot4_Shipwreck,
                        file_name = "Prot4_Shipwreck_Biplot3D")
 ```
 
-![Prot4_Shipwreck_Biplot3D.gif](publication_appendices/Appendix_E_Animated_GIFs/E5_Prot4_Shipwreck_Biplot3D.gif)
+```{r Prot4ShipwreckBiplot3Danimation, eval=!params$ispdf, echo=FALSE, dependson='run.coevo.coeta-frames', fig.cap='Prot4_Shipwreck_Biplot3D.gif'}
+knitr::include_graphics("publication_appendices/Appendix_E_Animated_GIFs/E5_Prot4_Shipwreck_Biplot3D.gif")
+```
 
+NOTE: Animated GIF will not be displayed in the pdf version of this document.

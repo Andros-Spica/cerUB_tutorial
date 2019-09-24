@@ -313,7 +313,6 @@ biplot2d3d::biplot_2d(prot2b_2d,
 
 \pagebreak
 
-
 ### Biplot 3D
 
 ```{r, eval=FALSE}
@@ -337,7 +336,11 @@ biplot2d3d::animation(directory = directories$prot2,
                       file_name = "Prot2a_Biplot3D")
 ```
 
-![Prot2a_Biplot3D.gif](publication_appendices/Appendix_E_Animated_GIFs/E2_Prot2a_Biplot3D.gif)
+```{r Prot2Biplot3Danimation, eval=!params$ispdf, echo=FALSE, dependson='run.coevo.coeta-frames', fig.cap='Prot2_Biplot3D.gif'}
+knitr::include_graphics("publication_appendices/Appendix_E_Animated_GIFs/E2_Prot2a_Biplot3D.gif")
+```
+
+NOTE: Animated GIF will not be displayed in the pdf version of this document.
 
 \pagebreak
 
@@ -362,5 +365,8 @@ biplot2d3d::animation(directory = directories$prot2,
                       file_name = "Prot2b_Biplot3D")
 ```
 
-![Prot2b_Biplot3D_snapshot.png](publication_appendices/Appendix_E_Animated_GIFs/E2_Prot2b_Biplot3D.gif)
+```{r Prot2bBiplot3Danimation, eval=!params$ispdf, echo=FALSE, dependson='run.coevo.coeta-frames', fig.cap='E2_Prot2b_Biplot3D.gif'}
+knitr::include_graphics("publication_appendices/Appendix_E_Animated_GIFs/E2_Prot2b_Biplot3D.gif")
+```
 
+NOTE: Animated GIF will not be displayed in the pdf version of this document.
