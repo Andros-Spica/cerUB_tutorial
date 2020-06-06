@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/121615540.svg)](https://zenodo.org/badge/latestdoi/121615540)
+
 # cerUB tutorial
 
 Tutorial showcasing the cerUB package for R ([cerUB](https://github.com/Andros-Spica/cerUB)).
@@ -6,7 +8,7 @@ Click [here](https://andros-spica.github.io/cerUB_tutorial/index.html) to follow
 
 There, the [publication appendices](https://github.com/Andros-Spica/cerUB_tutorial/tree/master/publication_appendices) folder contains alternative versions of the appendices (supplementary materials) of the related article:
 
-> Angourakis, A., MartÌnez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
+> Angourakis, A., Mart√≠nez Ferreras, V., Torrano A., Gurt Esparraguera, J.M. (2018) Presenting multivariate statistical protocols in R using Roman wine amphorae productions in Catalonia, Spain. *Journal of Archaeological Science*, 93:150-165. https://doi.org/10.1016/j.jas.2018.03.007
 
 Additionaly, the repository also contains:
 - [Poster](https://github.com/Andros-Spica/cerUB_tutorial/blob/master/poster_ISA2018/ISA2018_Angourakis_et_al.pdf) presented in the International Symposium on Archaeometry (ISA) in Merida, Mexico, May 2018.
